@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="essay">
+  <meta name="keywords" content="设计模式,">
 
 
 
@@ -93,17 +93,18 @@
 
 
 
-<meta name="description" content="站点的搭建过程用两天时间完成了这个blog的搭建，现在勉强能看得过去了，当然还有一些问题，以后有时间再慢慢丰富完善。在用Hexo搭建自己的blog的过程中，参考了许多别人写的教程和博客，主要有博客（博主的文章也很不错），Next的文档，Hexo的文档。其实文档官方的文档写得挺好的，照着文档的步骤基本上就能把blog搭起来，问题主要在应用一些第三方插件来丰富站点比较麻烦。网上已经有很多利用Hexo搭">
+<meta name="description" content="最近在看《重构》，第一章的例子就用到了State模式来重构一段代码。State模式的结构还笔记好理解，所以就试着写一个简单的例子。 State模式的思想首先有一个抽象的基类State，在其中定义了一些接口。State的派生类实现了这些接口，每个派生类的操作各不同。另外，还有一个类Context，类中有一个成员State，通过这个成员来表示Context所处的状态。Context可以改变不同的状态，">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇博客">
-<meta property="og:url" content="http://www.skybluues.com/HelloWorld/index.html">
+<meta property="og:title" content="状态模式简单例子">
+<meta property="og:url" content="http://www.skybluues.com/状态模式简单例子/index.html">
 <meta property="og:site_name" content="SkyBlues Notes">
-<meta property="og:description" content="站点的搭建过程用两天时间完成了这个blog的搭建，现在勉强能看得过去了，当然还有一些问题，以后有时间再慢慢丰富完善。在用Hexo搭建自己的blog的过程中，参考了许多别人写的教程和博客，主要有博客（博主的文章也很不错），Next的文档，Hexo的文档。其实文档官方的文档写得挺好的，照着文档的步骤基本上就能把blog搭起来，问题主要在应用一些第三方插件来丰富站点比较麻烦。网上已经有很多利用Hexo搭">
+<meta property="og:description" content="最近在看《重构》，第一章的例子就用到了State模式来重构一段代码。State模式的结构还笔记好理解，所以就试着写一个简单的例子。 State模式的思想首先有一个抽象的基类State，在其中定义了一些接口。State的派生类实现了这些接口，每个派生类的操作各不同。另外，还有一个类Context，类中有一个成员State，通过这个成员来表示Context所处的状态。Context可以改变不同的状态，">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-26T09:21:28.849Z">
+<meta property="og:updated_time" content="2019-06-19T14:09:08.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇博客">
-<meta name="twitter:description" content="站点的搭建过程用两天时间完成了这个blog的搭建，现在勉强能看得过去了，当然还有一些问题，以后有时间再慢慢丰富完善。在用Hexo搭建自己的blog的过程中，参考了许多别人写的教程和博客，主要有博客（博主的文章也很不错），Next的文档，Hexo的文档。其实文档官方的文档写得挺好的，照着文档的步骤基本上就能把blog搭起来，问题主要在应用一些第三方插件来丰富站点比较麻烦。网上已经有很多利用Hexo搭">
+<meta name="twitter:title" content="状态模式简单例子">
+<meta name="twitter:description" content="最近在看《重构》，第一章的例子就用到了State模式来重构一段代码。State模式的结构还笔记好理解，所以就试着写一个简单的例子。 State模式的思想首先有一个抽象的基类State，在其中定义了一些接口。State的派生类实现了这些接口，每个派生类的操作各不同。另外，还有一个类Context，类中有一个成员State，通过这个成员来表示Context所处的状态。Context可以改变不同的状态，">
 
 
 
@@ -131,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://www.skybluues.com/HelloWorld/">
+  <link rel="canonical" href="http://www.skybluues.com/状态模式简单例子/">
 
 
 
 
 
-  <title>第一篇博客 | SkyBlues Notes</title>
+  <title>状态模式简单例子 | SkyBlues Notes</title>
   
 
 
@@ -317,7 +318,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/HelloWorld/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/状态模式简单例子/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -334,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一篇博客</h1>
+          <h1 class="post-title" itemprop="name headline">状态模式简单例子</h1>
         
 
         <div class="post-meta">
@@ -346,8 +347,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-17T21:54:47+08:00">
-                2017-07-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+08:00">
+                2019-04-05
               </time>
             
 
@@ -369,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Essay/" itemprop="url" rel="index">
-                    <span itemprop="name">Essay</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -387,8 +388,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/HelloWorld/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="HelloWorld/" itemprop="commentCount"></span>
+                <a href="/状态模式简单例子/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="状态模式简单例子/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,7 +397,7 @@
 
           
           
-             <span id="/HelloWorld/" class="leancloud_visitors" data-flag-title="第一篇博客">
+             <span id="/状态模式简单例子/" class="leancloud_visitors" data-flag-title="状态模式简单例子">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -424,16 +425,17 @@
       
 
       
-        <h3 id="站点的搭建过程"><a href="#站点的搭建过程" class="headerlink" title="站点的搭建过程"></a>站点的搭建过程</h3><p>用两天时间完成了这个blog的搭建，现在勉强能看得过去了，当然还有一些问题，以后有时间再慢慢丰富完善。<br>在用Hexo搭建自己的blog的过程中，参考了许多别人写的教程和博客，主要有<a href="http://www.jeyzhang.com/hexo-github-blog-building.html" target="_blank" rel="noopener">博客</a>（博主的文章也很不错），<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">Next</a>的文档，<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>的文档。其实文档官方的文档写得挺好的，照着文档的步骤基本上就能把blog搭起来，问题主要在应用一些第三方插件来丰富站点比较麻烦。网上已经有很多利用Hexo搭建blog的教程了，没必要过多重复赘述，这里主要叙述一下我遇到的问题。<br>完成blog的基本功能后，在本地测试通过，然后在github上建立一个对应的仓库存放站点。在阿里云上买了一个域名，将其解析到自己的github下的blog，这里主要是要做一个实名验证，并且要把域名和对应的ip绑定，可以通过ping自己的github站点看到ip。<br>添加搜索功能。官方文档推荐用swiftype，但是我在注册的时候出现了一些问题，就选择了最简单的local search，感觉也还不错。<br>添加评论区。这个我选择了disqus，按照文档和别人博客的步骤设置。看到disqus网页上的内容还是很多的，有时间可以研究一下。<br>统计访问量。阅读次数统计使用的是LeanCloud，这个好像是给web应用和app提供服务的，功能很多，这里只用到了统计访问量。<br>提供搜索引擎检索。按照文档中的步骤添加了百度和谷歌的检索，但是好像没有奏效，目前不知道问题出在哪，过段时间好好看一下。</p>
-<h3 id="初识Markdown"><a href="#初识Markdown" class="headerlink" title="初识Markdown"></a>初识Markdown</h3><p>博客的书写建议采用markdown，在此之前在下也没有接触过markdown，算是一个小白。markdonw的语法还有比较简单的，看这文档和一些入门教程多写几次应该就可以应付一般的博客排版了。这里有一些还错的资源：</p>
-<ul>
-<li>文档：<a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">http://wowubuntu.com/markdown/</a></li>
-<li>博客：<a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="noopener">http://www.jianshu.com/p/1e402922ee32/</a></li>
-<li>博客：<a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="noopener">http://www.jianshu.com/p/q81RER</a></li>
-<li>有道云笔记文档：<a href="http://note.youdao.com/iyoudao/?p=2411" target="_blank" rel="noopener">http://note.youdao.com/iyoudao/?p=2411</a></li>
-</ul>
-<h3 id="写博客的动机"><a href="#写博客的动机" class="headerlink" title="写博客的动机"></a>写博客的动机</h3><p>很久以前就想过要写博客，因为平时自己也会看一些技术博客。但由于自己水平很差，同时看到很多博客页面让我感觉不是很好，就一直没写。直到发现了用Hexo来搭建博客，被页面简洁清爽无广告的视觉体验吸引，而且站点可以放在github上，拥有自己的域名，不依赖于其他的平台，就想用它来搭建自己的博客。<br>由于自己平时也看一些大牛的博客，而且遇到问题经常google到一些很好的博客，受益很大，所以也决定开始写博客。一方面能总结自己在学习过程中遇到的问题与收获，作为一个记录;另一方面，自己踩过的坑和笔记若能对需要的人有一些帮助，那也算一份功德。而且写博客的过程中，也能促进自己去思考和总结，何乐而不为。<br>博主非计算机专业，但对这方面比较感兴趣，可惜水平不高。博客的内容可能大都是与技术相关，可能也会也其他的一些。写博客也是为了督促自己不断学习和进步，同时提高自己的书面表达能力。曾经有老师对我说过：一样东西，你能把别人讲懂了，你自己才是真的懂了。所以博主会力求认真写好每一篇博客，为了让自己懂，也为别人懂。</p>
-<p>这是在下的第一个博客站点，也是第一篇博客，所以有些激动，以后还要多多学习，写出好的博客，也希望看到的朋友不吝指点。</p>
+        <p><em>最近在看《重构》，第一章的例子就用到了State模式来重构一段代码。State模式的结构还笔记好理解，所以就试着写一个简单的例子。</em></p>
+<h3 id="State模式的思想"><a href="#State模式的思想" class="headerlink" title="State模式的思想"></a>State模式的思想</h3><p>首先有一个抽象的基类State，在其中定义了一些接口。State的派生类实现了这些接口，每个派生类的操作各不同。另外，还有一个类Context，类中有一个成员State，通过这个成员来表示Context所处的状态。Context可以改变不同的状态，从而对外展示出不同的特性。（这里的类名随意取的）</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>State类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#ifndef TSTATEMODE_STATE_H_</span><br><span class="line">#define TSTATEMODE_STATE_H_</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">class State &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual ~State() &#123;&#125;;</span><br><span class="line">    virtual void Handle() = 0;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br><span class="line"></span><br><span class="line">#endif // TSTATEMODE_STATE_H_</span><br></pre></td></tr></table></figure></p>
+<p>State类中就定义了一个<em>Handle</em>接口。</p>
+<p>子类ConcreteState1头文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#ifndef TSTATEMODE_CONCRETE_STATE1_H_</span><br><span class="line">#define TSTATEMODE_CONCRETE_STATE1_H_</span><br><span class="line"></span><br><span class="line">#include &quot;state.h&quot;</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">class ConcreteState1: public State &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual ~ConcreteState1();</span><br><span class="line">    virtual void Handle();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br><span class="line"></span><br><span class="line">#endif // TSTATEMODE_CONCRETE_STATE1_H_</span><br></pre></td></tr></table></figure></p>
+<p>子类ConcreteState1源文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;concrete_state1.h&quot;</span><br><span class="line"></span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">ConcreteState1::~ConcreteState1() &#123; &#125;</span><br><span class="line"></span><br><span class="line">void ConcreteState1::Handle() &#123;</span><br><span class="line">    printf(&quot;ConcreteState1 %s\n&quot;, __FUNCTION__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br></pre></td></tr></table></figure></p>
+<p>子类ConcreteState2头文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#ifndef TSTATEMODE_CONCRETE_STATE2_H_</span><br><span class="line">#define TSTATEMODE_CONCRETE_STATE2_H_</span><br><span class="line"></span><br><span class="line">#include &quot;state.h&quot;</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">class ConcreteState2: public State &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual ~ConcreteState2();</span><br><span class="line">    virtual void Handle();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br><span class="line"></span><br><span class="line">#endif // TSTATEMODE_CONCRETE_STATE2_H_</span><br></pre></td></tr></table></figure></p>
+<p>子类ConcreteState2源文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;concrete_state2.h&quot;</span><br><span class="line"></span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">ConcreteState2::~ConcreteState2() &#123; &#125;</span><br><span class="line"></span><br><span class="line">void ConcreteState2::Handle() &#123;</span><br><span class="line">    printf(&quot;ConcreteState2 %s\n&quot;, __FUNCTION__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br></pre></td></tr></table></figure></p>
+<p>Context类头文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#ifndef TSTATEMODE_CONTEXT_H_</span><br><span class="line">#define TSTATEMODE_CONTEXT_H_</span><br><span class="line"></span><br><span class="line">#include &quot;state.h&quot;</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">class Context &#123;</span><br><span class="line">public:</span><br><span class="line">    Context(State* state): state_(state) &#123;&#125;</span><br><span class="line">    bool ChangeState(State* state);</span><br><span class="line">    void Display();</span><br><span class="line">private:</span><br><span class="line">    State* state_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br><span class="line"></span><br><span class="line">#endif // TSTATEMODE_CONTEXT_H_</span><br></pre></td></tr></table></figure></p>
+<p>Context类源文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;context.h&quot;</span><br><span class="line"></span><br><span class="line">namespace tstatemode &#123;</span><br><span class="line"></span><br><span class="line">bool Context::ChangeState(State* state) &#123;</span><br><span class="line">    if(nullptr != state) state_ = state;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Context::Display() &#123;</span><br><span class="line">    if(nullptr != state_) </span><br><span class="line">        state_-&gt;Handle();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125; // namespace tstatemode</span><br></pre></td></tr></table></figure></p>
+<p>主函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;context.h&quot;</span><br><span class="line">#include &quot;concrete_state1.h&quot;</span><br><span class="line">#include &quot;concrete_state2.h&quot;</span><br><span class="line">#include &quot;state.h&quot;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    namespace tsm = tstatemode;</span><br><span class="line"></span><br><span class="line">    tsm::State* state1 = new tsm::ConcreteState1();</span><br><span class="line">    tsm::State* state2 = new tsm::ConcreteState2();</span><br><span class="line">    tsm::Context context(state1);</span><br><span class="line"></span><br><span class="line">    context.Display();</span><br><span class="line"></span><br><span class="line">    context.ChangeState(state2);</span><br><span class="line">    context.Display();</span><br><span class="line"></span><br><span class="line">    context.ChangeState(state1);</span><br><span class="line">    context.Display();</span><br><span class="line"></span><br><span class="line">    delete state1;</span><br><span class="line">    delete state2;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -461,6 +463,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
 
       
       
@@ -470,14 +478,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/对称加密/" rel="next" title="对称加密">
+                <i class="fa fa-chevron-left"></i> 对称加密
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/一些优秀的博客链接/" rel="prev" title="一些优秀的博客链接">
-                一些优秀的博客链接 <i class="fa fa-chevron-right"></i>
+              <a href="/以太坊keystore文件解析/" rel="prev" title="以太坊keystore文件解析">
+                以太坊keystore文件解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -650,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#站点的搭建过程"><span class="nav-number">1.</span> <span class="nav-text">站点的搭建过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初识Markdown"><span class="nav-number">2.</span> <span class="nav-text">初识Markdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写博客的动机"><span class="nav-number">3.</span> <span class="nav-text">写博客的动机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#State模式的思想"><span class="nav-number">1.</span> <span class="nav-text">State模式的思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
@@ -798,9 +810,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.skybluues.com/HelloWorld/';
-          this.page.identifier = 'HelloWorld/';
-          this.page.title = '第一篇博客';
+          this.page.url = 'http://www.skybluues.com/状态模式简单例子/';
+          this.page.identifier = '状态模式简单例子/';
+          this.page.title = '状态模式简单例子';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://skyblues-notes.disqus.com/embed.js';

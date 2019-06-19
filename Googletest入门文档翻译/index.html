@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++ 测试框架,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="Googletest入门 介绍：为什么选googletest? googletest帮助你写出更好的C++测试程序 googletest是google的测试技术团队开发的一个测试框架，开发这个框架是出于google特定的需求和约束考虑。无论使用Linux，Windows，还是Mac，只要你写C++代码，googletest都能帮助你。并且它不仅支持单元测试，还支持其他类型的测试。那么，什么样的测试">
+<meta name="keywords" content="C++ 测试框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Googletest入门文档翻译">
+<meta property="og:url" content="http://www.skybluues.com/Googletest入门文档翻译/index.html">
+<meta property="og:site_name" content="SkyBlues Notes">
+<meta property="og:description" content="Googletest入门 介绍：为什么选googletest? googletest帮助你写出更好的C++测试程序 googletest是google的测试技术团队开发的一个测试框架，开发这个框架是出于google特定的需求和约束考虑。无论使用Linux，Windows，还是Mac，只要你写C++代码，googletest都能帮助你。并且它不仅支持单元测试，还支持其他类型的测试。那么，什么样的测试">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-06-19T13:59:22.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Googletest入门文档翻译">
+<meta name="twitter:description" content="Googletest入门 介绍：为什么选googletest? googletest帮助你写出更好的C++测试程序 googletest是google的测试技术团队开发的一个测试框架，开发这个框架是出于google特定的需求和约束考虑。无论使用Linux，Windows，还是Mac，只要你写C++代码，googletest都能帮助你。并且它不仅支持单元测试，还支持其他类型的测试。那么，什么样的测试">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.skybluues.com/Googletest入门文档翻译/">
+
+
+
+
+
+  <title>Googletest入门文档翻译 | SkyBlues Notes</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-102673554-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SkyBlues Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Its now or never!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Googletest入门文档翻译/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SkyBlues">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SkyBlues Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Googletest入门文档翻译</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-02T00:00:00+08:00">
+                2019-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Googletest入门文档翻译/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Googletest入门文档翻译/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Googletest入门文档翻译/" class="leancloud_visitors" data-flag-title="Googletest入门文档翻译">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Googletest入门"><a href="#Googletest入门" class="headerlink" title="Googletest入门"></a>Googletest入门</h1><hr>
+<h3 id="介绍：为什么选googletest"><a href="#介绍：为什么选googletest" class="headerlink" title="介绍：为什么选googletest?"></a>介绍：为什么选googletest?</h3><hr>
+<p><em>googletest帮助你写出更好的C++测试程序</em></p>
+<p>googletest是google的测试技术团队开发的一个测试框架，开发这个框架是出于google特定的需求和约束考虑。无论使用Linux，Windows，还是Mac，只要你写C++代码，googletest都能帮助你。并且它不仅支持单元测试，还支持其他类型的测试。<br>那么，什么样的测试是好的测试，googletest又是怎么做的？我们认为：</p>
+<ol>
+<li>不同测试之间应该是<em>独立的</em>且<em>可重复的</em>。如果一个测试的成功与否依赖于其他的测试结果，这将是一件痛苦的事。googletest将各个测试运行在不同的对象中，以此独立不同的测试。如果一个测试挂了，googletest能让你在孤立的环境中运行它，实现快速调试。</li>
+<li>测试集应该<em>组织良好</em>，并且能反映被测代码的结构。googletest将相关的tests分组到test cases中，使之能够共享数据和子程序。这种普通的模式很清晰，也让tests容易维护。对于切换了项目和开始基于一段新代码工作的人，这样的一致性非常有帮助。</li>
+<li>Tests应该具有<em>可移植性</em>和<em>可重用性</em>。Google有很多平台独立的代码，它们的测试也应该是平台独立的。googletest可以在不同的操作系统运行，这些系统有不同的编译器（gcc，icc，和MSVC），有的支持异常有的不支持，所以googletest能够轻松的在各种配置下工作。</li>
+<li>一旦tests失败，测试框架应该尽可能多的提供错误<em>信息</em>。googletest不会在第一个test失败后停下来，而是仅仅终止当前的test，然后继续下一个test。你也可以设置tests报告非致命错误，以此让当前test继续执行。因此，你能在一个run-edit-compile周期里，检测并修复多个bug。</li>
+<li>测试框架应该把程序员从繁杂的琐事中解放出来，让他们专注于test<em>内容</em>。googletest自动跟踪所有已定义的tests，不需要用户为了运行而去枚举它们。</li>
+<li>Tests应该是<em>快速的</em>。使用googletest，你能够重用在tests中共享的资源，并且只需要调用一次set-up/taer-down，tests之间没有依赖关系。</li>
+</ol>
+<p>googletest基于流行的xUint架构，所以如果你在此之前使用过JUnit或者PyUnit，你会感觉很熟悉。否则，你需要花10分钟学习这些基础，然后再开始应用。开始吧！</p>
+<h3 id="命名法须知"><a href="#命名法须知" class="headerlink" title="命名法须知"></a>命名法须知</h3><p><em>注意：</em>由于对术语<em>Test, Test Case</em>和<em>Test Suite</em>的不同定义，可能会造成一些困惑，所以留意这些可能的误解。<br>以往，googletest开始用术语<em>Test Case</em>表示具有相关性的tests，然而，当前公开的一些框架是用<em>Test Suite</em>，包括International Software Testing Qualifications Board (ISTQB)和various textbooks on Software Quality。<br>在googletest中使用的术语<em>Test</em>，与ISTQB和其他框架使用的术语<em>Test Case</em>意义一样。<br>术语<em>Test</em>通常具有足够广泛的意义，也包括ISTQB定义的<em>Test Case</em>，所以这没有太多问题。但是在Google Test中使用的术语<em>Test Case</em>有一定的矛盾性，所以会让人迷惑。<br>googletest最近开始用术语<em>Test Suite</em>替换<em>Test Case</em>，更好的API是TestSuite<em>。旧的TestCase</em> API逐渐被弃用和重构。<br>所以，请留意这两个术语的不同定义：</p>
+<table>
+<thead>
+<tr>
+<th>意义</th>
+<th>googletest术语</th>
+<th>ISTQB术语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用特定的输入值检验特定的程序执行路径并验证结果</td>
+<td>TEST()</td>
+<td>Test Case</td>
+</tr>
+</tbody>
+</table>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><hr>
+<p>使用googletest从写<em>assertions</em>开始，这是用于检查条件是否为真的表达式。一个assertion的结果可以是<em>success</em>，<em>nonfatal failure</em>，或者<em>fatal failure</em>。如果一个fatal failure发生，当前的函数会被终止；否则程序会正常继续执行。<br><em>Tests</em>用assertions去验证被测代码的行为。如果一个test挂了或者得到一个失败的assertion，这个test就是失败的；否则就是成功。<br>一个<em>test case</em>包含一个或多个tests。你应该将tests分组到不同的test cases中，以反映被测代码的结构。当一个test case中的多个tests要共享通用的对象和子程序时，你可以将它们放入<em>test fixture</em>类中。<br>一个<em>test program</em>能包含多个test cases。<br>我们现在解释如何写一个测试程序，从单个assertion级别开始，直到建立tests和test cases。</p>
+<h3 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h3><hr>
+<p>googletest assertions是类似于函数调用的宏。通过对类或函数的行为设置assertions，来进行测试。当assertion失败，googletes打印assertion的源文件和它所在的行号，以及错误信息。你也可以提供定制的错误信息，这会添加在googletest信息后面。<br>测试同样的功能assertions有两个版本，在测试函数中它们会表现出不同的效果。当断言失败，==ASSERT_<em>==版本会产生致命错误并终止当前函数。==EXPECT_</em>==产生非致命错误，不会终止当前函数。==EXPEXCT_<em>==总是被推荐的，因为它们允许多个错误在一个test里面被报告。然而，当断言处发生错误后继续执行程序没有意义，你就应该使用==ASSERT_</em>==。<br>一个失败的==ASSERT_*==会立即从当前函数返回，所以可能会跳过在这之后的清理代码，这是否值得修复依赖于泄露的特性，所以记住这一点，如果你在断言错误后得到一个堆检测错误。<br>为了提供定制的失败信息，可以通过操作符==&lt;&lt;==简单的将信息输入宏，或者一系列这样的操作。一个例子：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ASSERT_EQ(x.size(), y.size()) &lt;&lt; <span class="string">"Vectors x and y are of unequal length"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; x.size(); ++i) &#123;</span><br><span class="line">    EXPECT_EQ(x[i], y[i]) &lt;&lt; <span class="string">"Vectors x and y differ at index "</span> &lt;&lt; i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>任何能输入==ostream==的对象都能被输入断言宏–特殊的，C字符串和==string==对象。如果宽字符串（Windows的==wchar_t<em>==, ==TCHAR</em>==in==UNICODE==模式，或者==std::wstring==）被输入断言宏，会在打印时转换程UTF-8。</p>
+<h3 id="基本的Assertions"><a href="#基本的Assertions" class="headerlink" title="基本的Assertions"></a>基本的Assertions</h3><p>这些assertions进行基本的true/false条件测试：<br>| Fatal assertion            | Nonfatal assertion           | Verifies               |<br>| —————————| —————————–| ———————–|<br>| ASSERT_TRUE(condition);    | EXPECT_TRUE(condition);      | condition is true      |<br>| ASSERT_FALSE(condition);   | EXPECT_FALSE(condition);     | condition is false     |</p>
+<p>记住，如果条件为false，==ASSERT_<em> ==产生一个致命错误并从当前函数返回，而==EXPECT_</em> ==产生一个非致命错误，函数会继续执行。无论哪种情况，一个断言失败意味着它包含测试失败。</p>
+<p><strong>可用性</strong>：Linux, Windows, Mac。</p>
+<h3 id="二元比较"><a href="#二元比较" class="headerlink" title="二元比较"></a>二元比较</h3><hr>
+<p>这部分描述比较两个值的断言。<br>| Fatal assertion           | Nonfatal assertion        | Verifies     |<br>| ———————-    | ———————-    | ————-|<br>| ASSERT_EQ(val1, val2);    | EXPECT_EQ(val1, val2);    | val1 == val2 |<br>| ASSERT_NE(val1, val2);    | EXPECT_NE(val1, val2);    | val1 != val2 |<br>| ASSERT_LT(val1, val2);    | EXPECT_LT(val1, val2);    | val1 &lt; val2  |<br>| ASSERT_LE(val1, val2);    | EXPECT_LE(val1, val2);    | val1 &lt;= val2 |<br>| ASSERT_GT(val1, val2);    | EXPECT_GT(val1, val2);    | val1 &gt; val2  |<br>| ASSERT_GE(val1, val2);    | EXPECT_GE(val1, val2);    | val1 &gt;= val2 |</p>
+<p>Value参数必须是能通过断言比较操作符比较的，否则会得到一个编译错误。我们过去要求参数支持能输入到==ostream==的==&lt;&lt;==操作符，但是现在不是必要的。如果支持==&lt;&lt;==，一旦断言失败，它会被调用来输出参数；否则googletest会尽可能用最合理的方式来打印它。更多细节以及如何定制化打印参数，参考gMock recipe。<br>断言能用户定义的类型也有效，但必须要定义相关的比较运算符（比如 == == ==, == &lt; ==，等）。Google C++风格指南不鼓励运算符重载，所以你可能要使用== ASSERT_TRUE() == 或者 == EXPECT_TRUE() == 去断言自定义的两个对象是否相等。<br>然而，如果可能，==ASSERT_EQ(actual, expected)==要优于==ASSERT_TRUE(actual == expected)==，因为前者会在失败时报告==actual==和==expected==的值。<br>参数总是精确的计算一次。因此，参数产生的副作用是正常的。但是，就像任何正常的C/C++函数一样，参数的计算顺序是未定义的（即这个顺序是编译器相关的），并且你的代码不应该有任何特殊的参数计算顺序依赖。<br>==ASSERT_EQ==进行指针的相等判断。如果在两个C字符串上使用，这会测试它们是否有相同的内存位置，而不是是否有一样的值。因此，如果你要比较C字符串（比如==const char<em>==)的值就用==ASSERT_STREQ()==，稍后会有介绍。特殊的，断言一个C字符串是==NULL==，使用==ASSERT_STREQ(c_string, NULL)==。如果支持C++11，考虑用ASSERT_EQ(c_string, nullptr)。用==ASSERT_EQ==比较两个==string==对象。<br>做指针比较时，用==</em>_EQ(ptr, nullptr)==和==<em>NE(ptr, nullptr)==代替==</em>_EQ(ptr, NULL)==和==<em>_NE(ptr, NULL)==。因为==nullptr是类型而==NULL==不是。<br>如果你处理浮点数，你需要使用这些宏针对浮点的变化形式，以避免取整导致的问题。<br>这节的宏支持宽字符对象和窄字符对象（==string==和==wstring==）。<br><strong>可用性</strong>：Linux, Windows, Mac。<br><strong>历史改动</strong>：2016年二月以前，==</em>_EQ==有一个调用惯例==ASSERT_EQ(expected, actual)==，很多现有代码就使用这种顺序。现在==*_EQ==以相同的方式对待两个参数。</p>
+<h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><hr>
+<p>这部分的断言比较两个C字符串。如果要比较两个==string==对象，使用==EXPECT_EQ==，==EXPECT_NE==，和其他代替。<br>| Fatal assertion                | Nonfatal assertion                | Verifies                                                         |<br>| —                           | —                               | —                                                              |<br>| ASSERT_STREQ(str1, str2);        | EXPECT_STREQ(str1, str2);            | the two C strings have the same content                          |<br>| ASSERT_STRNE(str1, str2);        | EXPECT_STRNE(str1, str2);            | the two C strings have different contents                        |<br>| ASSERT_STRCASEEQ(str1, str2);    | EXPECT_STRCASEEQ(str1, str2);        | the two C strings have the same content, ignoring case           |<br>| ASSERT_STRCASENE(str1, str2);    | EXPECT_STRCASENE(str1, str2);        | the two C strings have different contents, ignoring case         |</p>
+<p>注意断言名字种的“CASE”意味着忽略了case，==NULL==指针和一个空的字符串是不同的。<br>== <em>STREQ</em> ==和== <em>STRNE</em> ==也接收宽的C字符串（== wchar_t* ==）。如果两个宽字符串比较失败，它们的值会被UTF-8的字符串替换打印。<br><strong>可用性</strong>：Linux, Windows, Mac。<br><strong>其他</strong>：更多的字符串比较技巧（例如，子串，前缀，后缀和正则匹配），参考高级googletest指南的<a href="https://github.com/google/googletest/blob/master/googletest/docs/advanced.md" target="_blank" rel="noopener">这部分</a>。</p>
+<h3 id="简单的测试"><a href="#简单的测试" class="headerlink" title="简单的测试"></a>简单的测试</h3><hr>
+<p>建立一个测试：</p>
+<ol>
+<li>用==TEST()==宏定义并命名一个测试函数，这就是通常的没有返回值的C++函数。</li>
+<li>在这个函数种，可以包含你想要的各种有效的C++表达式，并用各种googletest断言去验证这些值。</li>
+<li>测试的结果决定于这些断言；测试中的任何的断言失败（无论是致命的还是非致命的），或者测试挂了，整个测试都是失败的，否则，测试成功。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TEST(TestSuiteName, TestName) &#123;</span><br><span class="line">    ... test body ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>==TEST()==参数从一般到具体。第一个参数是test case的名字，第二个参数是这个test case 中 test 的名字。两个名字都必须是有效的C++命名符，并且不能包含下划线（==_==）。一个测试的全名由它的test case和test名字组成。不同的test case中的test可以由相同的test名字。<br>例如，我们写一个简单的整型函数：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Factorial</span><span class="params">(<span class="keyword">int</span> n)</span></span>; <span class="comment">// Returns the factorial of n</span></span><br></pre></td></tr></table></figure></p>
+<p>这个函数的test case可能会是这样：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Tests factorial of 0.</span></span><br><span class="line">Test(FactorialTest, HandlesZeroInput) &#123;</span><br><span class="line">    EXPECT_EQ(Factorial(<span class="number">0</span>), <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tests factorial of positive numbers.</span></span><br><span class="line">TEST(FactorialTest, HandlesPositiveInput) &#123;</span><br><span class="line">    EXPECT_EQ(Factorial(<span class="number">1</span>), <span class="number">1</span>);</span><br><span class="line">    EXPECT_EQ(Factorial(<span class="number">2</span>), <span class="number">2</span>);</span><br><span class="line">    EXPECT_EQ(Factorial(<span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">    EXPECT_EQ(Factorial(<span class="number">8</span>), <span class="number">40320</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>googletest以test cases为单位对测试结果分组，所以逻辑相关的tests应该被放在一个test case里；换言之，==TEST()==的第一个参数应该一样。在上面的例子中，由两个tests，==HandlesZeroInput==和==HandlesPositiveInput==，它们都属于==FactorialTest==。<br>命名test cases 和 tests时，应该遵循与函数命名和类命名同样的惯例。<br><strong>可用性</strong>：Linux, Windows, Mac。</p>
+<h3 id="测试装置：多个测试使用相同的数据配置"><a href="#测试装置：多个测试使用相同的数据配置" class="headerlink" title="测试装置：多个测试使用相同的数据配置"></a>测试装置：多个测试使用相同的数据配置</h3><hr>
+<p>如果你发现你写的两个或多个tests操作相似的数据，你可以使用 <em>test fixture</em>。它能让你在不同的tests中重用相同的对象配置。<br>建立一个配置：</p>
+<ol>
+<li>继承==::testing::Test==。从==protected:==开始写内容，也就是你想要从子类访问的配置成员。</li>
+<li>在类中申明任意你想要使用的对象。</li>
+<li>如果必要，写一个默认的构造函数或者==SetUp()==函数，用来给每个测试初始化对象。一个常见的错误是将==SetUp()==拼写成==Setup()==，小写了==u==，可以在C++11中使用==override==确保拼写正确。</li>
+<li>如果必要，写一个析构函数或者==TearDown()==函数去释放在==SetUp()==中分配的资源。阅读这里的<a href="https://github.com/google/googletest/blob/master/googletest/docs/faq.md#should-i-use-the-constructordestructor-of-the-test-fixture-or-setupteardown" target="_blank" rel="noopener">FAQ</a>，学习什么时候用构造和析构，什么时候用==SetUp()/TearDown()==。</li>
+<li>如果需要，给你的tests定义共享的子程序。</li>
+</ol>
+<p>当使用fixture，用==TEST_F()==代替==TEST()==，前者能让你访问这个test fixture中的对象和子程序：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TEST_F(TestSuiteName, TestName) &#123;</span><br><span class="line">  ... test body ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如同==TEST()==，第一个参数是test case的名字，但是对于==TEST_F()，必须是这个test fixture类的类名。你可能已经猜到：==_F==代表fixture。<br>遗憾的是，C++宏不允许我们创建一个宏来处理两种类型的测试。使用错误的宏会导致编译器错误。<br>你必须在==TEST_F()==使用test fixture之前定义它，否则会得到编译错误“virtual outside class declaration”。<br>对于每个用==TEST_F()==定义的test，googletest会在运行时创造一个新的test fixture，通过==SetUp()==立即初始化，运行test，通过==TearDown()==进行清理，然后删除test fixture。注意：同一个test case 中的不同tests拥有不同的test fixture对象，并且googletest总是在创造下一个test fixture之前删除上一个。googletest不会对多个tests用相同test fixture。任何一个test对test fixture的改变不会影响到其他的。</p>
+<p>作为一个例子，我们写一个tests，用于测试命名==Queue==的FIFO队列，接口如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> E&gt;  <span class="comment">// E is the element type.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  Queue();</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Enqueue</span><span class="params">(<span class="keyword">const</span> E&amp; element)</span></span>;</span><br><span class="line">  <span class="function">E* <span class="title">Dequeue</span><span class="params">()</span></span>;  <span class="comment">// Returns NULL if the queue is empty.</span></span><br><span class="line">  <span class="keyword">size_t</span> size() <span class="keyword">const</span>;</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>首先，定义一个fixture类。按照惯例，对于名为==Foo==的被测类型，它的test fixture名应该是==FooTest==。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueueTest</span> :</span> <span class="keyword">public</span> ::testing::Test &#123;</span><br><span class="line"> <span class="keyword">protected</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">SetUp</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">     q1_.Enqueue(<span class="number">1</span>);</span><br><span class="line">     q2_.Enqueue(<span class="number">2</span>);</span><br><span class="line">     q2_.Enqueue(<span class="number">3</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// void TearDown() override &#123;&#125;</span></span><br><span class="line"></span><br><span class="line">  Queue&lt;<span class="keyword">int</span>&gt; q0_;</span><br><span class="line">  Queue&lt;<span class="keyword">int</span>&gt; q1_;</span><br><span class="line">  Queue&lt;<span class="keyword">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>本例中，不需要==TearDown()==，因为不必在每个test后进行清理，析构函数已经做了这些工作。<br>现在，用==TEST_F()==写tests以及fixture。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TEST_F(QueueTest, IsEmptyInitially) &#123;</span><br><span class="line">  EXPECT_EQ(q0_.size(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TEST_F(QueueTest, DequeueWorks) &#123;</span><br><span class="line">  <span class="keyword">int</span>* n = q0_.Dequeue();</span><br><span class="line">  EXPECT_EQ(n, <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">  n = q1_.Dequeue();</span><br><span class="line">  ASSERT_NE(n, <span class="literal">nullptr</span>);</span><br><span class="line">  EXPECT_EQ(*n, <span class="number">1</span>);</span><br><span class="line">  EXPECT_EQ(q1_.size(), <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">delete</span> n;</span><br><span class="line"></span><br><span class="line">  n = q2_.Dequeue();</span><br><span class="line">  ASSERT_NE(n, <span class="literal">nullptr</span>);</span><br><span class="line">  EXPECT_EQ(*n, <span class="number">2</span>);</span><br><span class="line">  EXPECT_EQ(q2_.size(), <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">delete</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的程序用了==ASSERT_<em>==和==EXPECT_</em>==断言。使用的原则是：如果你想在断言失败后继续收到错误信息，就用==EXPECT_<em>==；如果断言失败后继续执行已经没有意义，就用==ASSERT_</em>==。例如，==Dequeue== test中的第二个断言是 =ASSERT_NE(nullptr, n)=, 我们之后应该废弃这个指针 ==n==，因为 ==n== 是 ==NULL== 会导致段错误。<br>当这些tests运行，以下的事情会发生：</p>
+<ol>
+<li>googletest构造一个 ==QueueTest== 对象（我们叫它 ==t1== ）。</li>
+<li>==t1.SetUp()== 初始化 ==t1==。</li>
+<li>第一个test（ ==IsEmptyInitially== ）在 ==t1== 上运行。</li>
+<li>test结束后 ==t1.TearDown()== 清理垃圾。</li>
+<li>==t1== 析构。</li>
+<li>在另外一个 ==QueueTest== 对象上重复以上过程，这次运行 ==DequeueWorks== test。</li>
+</ol>
+<p><strong>可用性</strong>：Linux, Windows, Mac。</p>
+<h3 id="触发Tests"><a href="#触发Tests" class="headerlink" title="触发Tests"></a>触发Tests</h3><hr>
+<p>==TEST()==和==TEST_F()==通过googletest隐式的注册它们的tests。所以，与很多其他的c++测试框架不同，你不必为了运行tests而去再列明这些已定义的tests。<br>tests定义后，你可以通过 ==RUN_ALL_TESTS()== 运行它们，所有的tests都成功会返回 ==0==，否则是 ==1== 。注意 ==RUN_ALL_TESTS()== 运行所有在你的链接单元中的tests–它们可以来自不同的test cases，甚至不同的源文件。</p>
+<p>一旦被触发， ==RUN_ALL_TESTS()== 宏：</p>
+<ol>
+<li>保存所有googletest flags 的状态。</li>
+<li>为第一个test创造一个test fixture。</li>
+<li>通过 ==SetUp()== 初始化。</li>
+<li>在fixture对象上运行test。</li>
+<li>通过 ==TearDown()== 清理fixture。</li>
+<li>删除fixture。</li>
+<li>重新保存googletest flags的状态。</li>
+<li>为下一个test重复以上过程，直到所有tests运行完。</li>
+</ol>
+<p>如果致命失败发生，后续的步骤将被跳过。</p>
+<blockquote>
+<p>重要：你不能忽略 ==RUN_ALL_TEST()== 的返回值，否则会得到一个编译错误。这样涉及的原则是：自动化测试服务决定一个test是否通过是基于它的退出码，而不是他的 stdout/stderr 输出；因此， ==main()== 函数必须返回 ==RUN_ALL_TESTS()== 的值。<br>同时，你只能调用 ==RUN_ALL_TESTS()== 一次。多此调用会引发一个高级的googletest特性冲突（例如，线程安全death tests），所以这是不支持的。</p>
+</blockquote>
+<p><strong>可用性</strong>：Linux, Windows, Mac。</p>
+<h3 id="写主函数"><a href="#写主函数" class="headerlink" title="写主函数"></a>写主函数</h3><hr>
+<p>写你的main()函数，它应该返回 ==RUN_ALL_TESTS()== 的值<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"this/package/foo.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"gtest/gtest.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The fixture for testing class Foo.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooTest</span> :</span> <span class="keyword">public</span> ::testing::Test &#123;</span><br><span class="line"> <span class="keyword">protected</span>:</span><br><span class="line">  <span class="comment">// You can remove any or all of the following functions if its body</span></span><br><span class="line">  <span class="comment">// is empty.</span></span><br><span class="line"></span><br><span class="line">  FooTest() &#123;</span><br><span class="line">     <span class="comment">// You can do set-up work for each test here.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ~FooTest() override &#123;</span><br><span class="line">     <span class="comment">// You can do clean-up work that doesn't throw exceptions here.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If the constructor and destructor are not enough for setting up</span></span><br><span class="line">  <span class="comment">// and cleaning up each test, you can define the following methods:</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">SetUp</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">     <span class="comment">// Code here will be called immediately after the constructor (right</span></span><br><span class="line">     <span class="comment">// before each test).</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">TearDown</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">     <span class="comment">// Code here will be called immediately after each test (right</span></span><br><span class="line">     <span class="comment">// before the destructor).</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Objects declared here can be used by all tests in the test case for Foo.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tests that the Foo::Bar() method does Abc.</span></span><br><span class="line">TEST_F(FooTest, MethodBarDoesAbc) &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> input_filepath = <span class="string">"this/package/testdata/myinputfile.dat"</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> output_filepath = <span class="string">"this/package/testdata/myoutputfile.dat"</span>;</span><br><span class="line">  Foo f;</span><br><span class="line">  EXPECT_EQ(f.Bar(input_filepath, output_filepath), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tests that Foo does Xyz.</span></span><br><span class="line">TEST_F(FooTest, DoesXyz) &#123;</span><br><span class="line">  <span class="comment">// Exercises the Xyz feature of Foo.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;  <span class="comment">// namespace</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>&#123;</span><br><span class="line">  ::testing::InitGoogleTest(&amp;argc, argv);</span><br><span class="line">  <span class="keyword">return</span> RUN_ALL_TESTS();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>==::testing::InitGoogleTest()== 函数为googletest flags解析命令行参数，并且移除所有可识别的flags。这能让用户通过各种flags来控制test程序的行为，在<a href="https://github.com/google/googletest/blob/master/googletest/docs/advanced.md" target="_blank" rel="noopener">AdvancedGuide</a>中有详细介绍。调用 ==RUN_ALL_TESTS()== 之前必须调用它，否则flags不会被正确初始化。<br>在Windows上， ==InitGoogleTest()== 也支持宽字符串，所以它也能在 ==UNICODE==模式下编译。<br>也许你觉得编写所有这些主函数工作量太大了？我们完全同意，那也是为什么googletest提供了一个基本的main()实现。如果这符合你的需求，把你的test和gtest_main链接，你很适合这样去做。<br>注意：==ParseGUnitFlags()== 已被弃用，更推荐用 ==InitGoogleTest()==。</p>
+<h3 id="需要知道的限制"><a href="#需要知道的限制" class="headerlink" title="需要知道的限制"></a>需要知道的限制</h3><hr>
+<ul>
+<li>Google Test被设计成线程安全的。在 ==pthreads==库可用的系统上，实现是线程安全的。当前在其他系统（比如 Windows）上在两个线程中并发使用Google Test断言是线程不安全的。在大部分tests中这不是问题，因为assertions总是在主线程中执行。如果你需要帮助，你可以针对你的平台，在 ==gtest-port.h== 中自愿实现这些必要的同步原语。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-测试框架/" rel="tag"># C++ 测试框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Vim常用命令/" rel="next" title="Vim常用命令">
+                <i class="fa fa-chevron-left"></i> Vim常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/makefile笔记/" rel="prev" title="makefile笔记">
+                makefile笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="SkyBlues">
+          <p class="site-author-name" itemprop="name">SkyBlues</p>
+           
+              <p class="site-description motion-element" itemprop="description">Good Good Study Day Day Up</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Googletest入门"><span class="nav-number">1.</span> <span class="nav-text">Googletest入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍：为什么选googletest"><span class="nav-number">1.0.1.</span> <span class="nav-text">介绍：为什么选googletest?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名法须知"><span class="nav-number">1.0.2.</span> <span class="nav-text">命名法须知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.0.3.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assertions"><span class="nav-number">1.0.4.</span> <span class="nav-text">Assertions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的Assertions"><span class="nav-number">1.0.5.</span> <span class="nav-text">基本的Assertions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二元比较"><span class="nav-number">1.0.6.</span> <span class="nav-text">二元比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串比较"><span class="nav-number">1.0.7.</span> <span class="nav-text">字符串比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的测试"><span class="nav-number">1.0.8.</span> <span class="nav-text">简单的测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试装置：多个测试使用相同的数据配置"><span class="nav-number">1.0.9.</span> <span class="nav-text">测试装置：多个测试使用相同的数据配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发Tests"><span class="nav-number">1.0.10.</span> <span class="nav-text">触发Tests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写主函数"><span class="nav-number">1.0.11.</span> <span class="nav-text">写主函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要知道的限制"><span class="nav-number">1.0.12.</span> <span class="nav-text">需要知道的限制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SkyBlues</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://skyblues-notes.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.skybluues.com/Googletest入门文档翻译/';
+          this.page.identifier = 'Googletest入门文档翻译/';
+          this.page.title = 'Googletest入门文档翻译';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://skyblues-notes.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WAglmhFLtdNGkNwm4VbihXur-gzGzoHsz", "JJJi6tqpNhS9gCRDluWUF7Kv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
