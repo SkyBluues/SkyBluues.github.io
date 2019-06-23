@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="essay">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="overviewsolidity是为了以太坊智能合约而创造的语言，语言本身并不复杂，有其他编程语言基础的人应该很容易上手，但是由于其特殊的运行环境，它也有一些独有的特性。先看一段智能合约代码，这是来自官方文档的示例： 123456789101112131415161718192021222324pragma solidity ^0.4.21; //合约的第一句必须是这个形式，表明solidity版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solidity学习笔记">
+<meta property="og:url" content="http://www.skybluues.com/solidity学习笔记/index.html">
+<meta property="og:site_name" content="SkyBlues Notes">
+<meta property="og:description" content="overviewsolidity是为了以太坊智能合约而创造的语言，语言本身并不复杂，有其他编程语言基础的人应该很容易上手，但是由于其特殊的运行环境，它也有一些独有的特性。先看一段智能合约代码，这是来自官方文档的示例： 123456789101112131415161718192021222324pragma solidity ^0.4.21; //合约的第一句必须是这个形式，表明solidity版">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-06-23T09:14:52.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="solidity学习笔记">
+<meta name="twitter:description" content="overviewsolidity是为了以太坊智能合约而创造的语言，语言本身并不复杂，有其他编程语言基础的人应该很容易上手，但是由于其特殊的运行环境，它也有一些独有的特性。先看一段智能合约代码，这是来自官方文档的示例： 123456789101112131415161718192021222324pragma solidity ^0.4.21; //合约的第一句必须是这个形式，表明solidity版">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.skybluues.com/solidity学习笔记/">
+
+
+
+
+
+  <title>solidity学习笔记 | SkyBlues Notes</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-102673554-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SkyBlues Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Its now or never!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/solidity学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SkyBlues">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SkyBlues Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">solidity学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/solidity学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="solidity学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/solidity学习笔记/" class="leancloud_visitors" data-flag-title="solidity学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="overview"><a href="#overview" class="headerlink" title="overview"></a>overview</h3><p>solidity是为了以太坊智能合约而创造的语言，语言本身并不复杂，有其他编程语言基础的人应该很容易上手，<br>但是由于其特殊的运行环境，它也有一些独有的特性。<br>先看一段智能合约代码，这是来自官方文档的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.21; //合约的第一句必须是这个形式，表明solidity版本，当前最新版本是0.4.24</span><br><span class="line"></span><br><span class="line">contract Coin &#123; //用contract申明这个合约，Coin是合约名称，这里类似于c++中的class申明</span><br><span class="line">	address public minter; //变量申明，address是数据类型，public是访问权限，minter是变量名</span><br><span class="line">	mapping (address =&gt; uint) public balances; // 变量申明，mapping相当于c++里的map, python的字典</span><br><span class="line">	</span><br><span class="line">	events Sent(address from, address to, uint amount); // 事件申明</span><br><span class="line">	</span><br><span class="line">	constructor public &#123; //构造函数</span><br><span class="line">		minter = msg.sender;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function mint(address receiver, uint amount) public &#123; // 普通函数，mint是函数名</span><br><span class="line">		if(msg.sender != minter) return;</span><br><span class="line">		balances[receiver] += amount;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	function send(address receiver, uint amount) public &#123;</span><br><span class="line">		if(balances[msg.sender] &lt; amount) return;</span><br><span class="line">		balances[msg.sender] -= amount;</span><br><span class="line">		balances[receiver] += amount;</span><br><span class="line">		emit Sent(msg.sender, receiver, amount); //向全网发送一个消息，内容是Sent中的三个参数</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码展示了一个智能合约的基本结构，代码中体现了solidity的一些基本特性。<br>一个solidity合约就相当于其他面向对象语言的一个类，同样有属性和方法。<br>这里先对solidity写一个合约有个整体性了解，接下来再细说一些具体细节。</p>
+<h3 id="memory-storage"><a href="#memory-storage" class="headerlink" title="memory\storage"></a>memory\storage</h3><ul>
+<li>这两个关键字通常用来修饰变量</li>
+<li>memory是存储在内存中的，storage是存储在链上的，也就是memory的变量在作用域结束后就消失，<br>storage变量永久保存。</li>
+<li>合约的状态变量默认是storage，函数局部变量和函数传参默认是memory。</li>
+<li>在有写情况需要显示声明变量的存储位置，storage像是指针，而memory则是新开辟空间。</li>
+</ul>
+<h3 id="constant-view-pure关键字"><a href="#constant-view-pure关键字" class="headerlink" title="constant\view\pure关键字"></a>constant\view\pure关键字</h3><p>这三个关键字用于控制function的读写权限，类似于c++中类方法的const的位置。</p>
+<h5 id="关键字的位置"><a href="#关键字的位置" class="headerlink" title="关键字的位置"></a>关键字的位置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function func(arg1...) view public &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="constant和view"><a href="#constant和view" class="headerlink" title="constant和view"></a>constant和view</h5><p>这两个关键字的作用是一样的，都是用于限制function对合约的内容只有只读权限，不能修改合约状态。<br>新版本的solidity用view取代了constant。</p>
+<h5 id="pure"><a href="#pure" class="headerlink" title="pure"></a>pure</h5><p>表示所修饰的function对合约的状态不读不写，给我的感觉有点像c++里面的static函数或者全局函数。<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function func(uint a, uint b) pure public returns(uint) &#123;</span><br><span class="line">	uint c = a + b;</span><br><span class="line">	return c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="为什么会有这些限制"><a href="#为什么会有这些限制" class="headerlink" title="为什么会有这些限制"></a>为什么会有这些限制</h5><p>首先，在以太坊上进行任何一笔交易，都是需要消耗gas的，对应的也就是以太币，而且需要全网验证、矿工挖矿。<br>那么用pure和view修饰的函数，只是从某个节点读取数据（甚至不读不写），不需要产生交易，所以可以省钱省时间。<br>如果一个函数没有用view和pure修饰，默认是要产生一笔交易的，即使函数不对合约状态做任何修改。<br>（至于EVM是如何处理的还没有深究）。<br>此外，如果产生一笔交易，花费很长时间，并且要全网验证同步，函数中的返回值是不会直接能读出的，即使在函数中<br>写明有返回值，在调用的时候返回的也只有交易的信息。</p>
+<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>solidity的可见性有四类：external\public\internal\private</p>
+<ul>
+<li>external，合约接口的一部分，只能在合约外部调用，比如别的合约、客户端。</li>
+<li>public，合约接口的一部分，类似其他面向对象语言的public。</li>
+<li>internal，类似于c++的protected。</li>
+<li>private，类似于c++的private。<br><em>solidity的可见性也要尽量按照函数应该有的访问权限写好，因为不同访问权限的函数对应的gas消耗不一样，<br>这与EVM的实现有关（具体也还要继续研究）</em></li>
+</ul>
+<h3 id="modifier"><a href="#modifier" class="headerlink" title="modifier"></a>modifier</h3><p>翻译成中文是修饰器，类似于python的装饰器。<br>一段简单的示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">modifier need() &#123;</span><br><span class="line">	require(condition == true);</span><br><span class="line">	_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function func(arg...) modifier &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上的代码，在func中添加了一个修饰器，函数被调用时会先执行modifier定义的内容，再执行自己本身的内容。</p>
+<h3 id="关键字assert-require-revert"><a href="#关键字assert-require-revert" class="headerlink" title="关键字assert\require\revert"></a>关键字assert\require\revert</h3><p>这几个关键字用于代替0.4.10以前的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(!condition) &#123; throw;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在的写法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">assert(condition);</span><br><span class="line">require(condition);</span><br><span class="line">if(!condition) &#123; revert();&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下是assert和require的一点区别，还有一些问题暂时没弄懂：</p>
+<ul>
+<li>assert会终止程序，并消耗掉剩余的gas，.</li>
+<li>require会终止程序，并返回剩余的gas.</li>
+</ul>
+<h3 id="solidity自带的特殊变量和函数"><a href="#solidity自带的特殊变量和函数" class="headerlink" title="solidity自带的特殊变量和函数"></a>solidity自带的特殊变量和函数</h3><p>solidity中自带了一些内置函数和变量，如下：</p>
+<ul>
+<li>block.blockhash(uint blockNumber) returns (byte32)–返回指定blockNumber的哈希值（仅限最近的256个block，并且<br>不包括当前block）</li>
+<li>blockhash(uint blockNumber)–在0.4.22后替代block.blockhash</li>
+<li>block.coinbase (address)–当前区块的矿工地址</li>
+<li>block.difficulty (uint)–当前区块的挖矿难度</li>
+<li>block.gaslimit (uint)–当前区块的gaslimit</li>
+<li>block.number (uint)–当前区块的高度</li>
+<li>block.timestamp (uint)–当前区块的时间戳</li>
+<li>gasleft() returns (uint256)–还剩下的gas</li>
+<li>msg.data (bytes)–complete calldata（不知道什么意思）</li>
+<li>msg.gas (uint)–0.4.21后被gasleft代替</li>
+<li>msg.sender (address)–发起交易的地址</li>
+<li>msg.sig (bytes4)–first four bytes of the calldata</li>
+<li>msg.value (uint)–number of wei sent with the message</li>
+<li>now (uint)–当前时间戳，同block.timestamp</li>
+<li>tx.gasprice (uint)–当前这笔交易的燃料价格</li>
+<li>tx.origin (address)–当前这笔交易的发起者</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>solidity的语言细节和于EVM相关的机制内容还有很多，这里仅仅简要的记录了一小部分。<br>另外，在学习的过程中，体会到一边看别人的代码一边写，遇到不知道的再去查文档是一个比较有效的方式。<br>这里推荐看一下<br><a href="https://medium.com/loom-network/how-to-code-your-own-cryptokitties-style-game-on-ethereum-7c8ac86a4eb3" target="_blank" rel="noopener">加密的源代码</a>，<br>代码量并不多，其中涉及的语言细节上面基本上都提到了，而且看懂加密猫的代码<br>也就能自己写一些合约了。</p>
+<hr>
+<p><em>增加的</em></p>
+<h3 id="fallback函数"><a href="#fallback函数" class="headerlink" title="fallback函数"></a>fallback函数</h3><ul>
+<li>fallback函数是合约中一个特殊的函数，没有返回值，没有参数，没有函数名，一个合约中只能有一个。在合约调用没有匹配<br>到函数签名，或者调用没有携带任何数据时被自动调用。</li>
+<li>solidity提供了编译期检查，所有不能调用不存在的函数，但是可以通过底层的address.call来模拟。</li>
+<li><p>直接上代码分析吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract ExecuteFallback&#123;</span><br><span class="line"></span><br><span class="line">  //回退事件，会把调用的数据打印出来</span><br><span class="line">  event FallbackCalled(bytes data);</span><br><span class="line">  //fallback函数，注意是没有名字的，没有参数，没有返回值的</span><br><span class="line">  function()&#123;</span><br><span class="line">    FallbackCalled(msg.data);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //调用已存在函数的事件，会把调用的原始数据，请求参数打印出来</span><br><span class="line">  event ExistFuncCalled(bytes data, uint256 para);</span><br><span class="line">  //一个存在的函数</span><br><span class="line">  function existFunc(uint256 para)&#123;</span><br><span class="line">    ExistFuncCalled(msg.data, para);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 模拟从外部对一个存在的函数发起一个调用，将直接调用函数</span><br><span class="line">  function callExistFunc()&#123;</span><br><span class="line">    bytes4 funcIdentifier = bytes4(keccak256(&quot;existFunc(uint256)&quot;));</span><br><span class="line">    this.call(funcIdentifier, uint256(1));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //模拟从外部对一个不存在的函数发起一个调用，由于匹配不到函数，将调用回退函数</span><br><span class="line">  function callNonExistFunc()&#123;</span><br><span class="line">    bytes4 funcIdentifier = bytes4(keccak256(&quot;functionNotExist()&quot;));</span><br><span class="line">    this.call(funcIdentifier);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>solidity函数签名方式–bytes4(keccak256(“existFunc(uint256)”))，引号中间是函数名和参数</p>
+</li>
+<li>msg.data–函数签名加上参数</li>
+<li>address.call调用方式–底层通过地址调用一个合约方法，第一个参数是函数签名，之后是参数。</li>
+</ul>
+<h3 id="send"><a href="#send" class="headerlink" title="send"></a>send</h3><ul>
+<li>使用address.send(ether to send)向某个合约直接转以太币，由于这个行为没有发送任何数据，<br>所以接收合约总是会调用fallback函数。</li>
+<li><p>示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract SendFallback&#123;</span><br><span class="line"></span><br><span class="line">  //fallback函数及其事件</span><br><span class="line">  event fallbackTrigged(bytes data);</span><br><span class="line">  function() payable&#123;fallbackTrigged(msg.data);&#125;</span><br><span class="line"></span><br><span class="line">  //存入一些ether用于后面的测试</span><br><span class="line">  function deposit() payable&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //查询当前的余额</span><br><span class="line">  function getBalance() constant returns(uint)&#123;</span><br><span class="line">      return this.balance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  event SendEvent(address to, uint value, bool result);</span><br><span class="line">  //使用send()发送ether，观察会触发fallback函数</span><br><span class="line">  function sendEther()&#123;</span><br><span class="line">      bool result = this.send(1);</span><br><span class="line">      SendEvent(this, 1, result);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们要在合约中通过send()函数接收，就必须定义fallback函数，否则会抛异常。</p>
+</li>
+<li>fallback函数必须增加payable关键字，否则send()执行结果将会始终为false。</li>
+<li>fallback的限制，send函数会限制gas的数量，防止恶意的操作。</li>
+</ul>
+<h3 id="payable"><a href="#payable" class="headerlink" title="payable"></a>payable</h3><ul>
+<li>用于标识一个方法，在调用时可以接受以太币。</li>
+<li>调用方式–address.call(some method).value(ether account).</li>
+<li>msg.value得到的是随调用指定的以太币数量。</li>
+</ul>
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a>call</h3><ul>
+<li>通过底层的方式调用指定地址的方法。</li>
+<li>addr.call(“abc”, 256)，abc是函数名称，256是对应的参数</li>
+<li>bytes4 methodId = bytes4(keccak256(“increaseAge(string,uint256)”));addr.call(methodId,”jack”, 1);<br>如果第一个参数刚好是四个字节，会认为这四个字节指定的是函数签名的序号值，<br>由如果你只是想传个参数值，而不是想指定一个函数序号，应避免第一个参数刚好是四个字节</li>
+</ul>
+<h3 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall"></a>delegatecall</h3><ul>
+<li>功能与call类似</li>
+<li>区别在于运行环境不通，delegatecall是在调用的函数是在当前环境下运行，call调用的函数是在被调用环境运行。<br>delegatecall相当于将目标代码放到当前环境运行。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CSAPP读书笔记/" rel="next" title="CSAPP读书笔记">
+                <i class="fa fa-chevron-left"></i> CSAPP读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/node开发以太坊程序/" rel="prev" title="node开发以太坊程序">
+                node开发以太坊程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="SkyBlues">
+          <p class="site-author-name" itemprop="name">SkyBlues</p>
+           
+              <p class="site-description motion-element" itemprop="description">Good Good Study Day Day Up</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#overview"><span class="nav-number">1.</span> <span class="nav-text">overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memory-storage"><span class="nav-number">2.</span> <span class="nav-text">memory\storage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constant-view-pure关键字"><span class="nav-number">3.</span> <span class="nav-text">constant\view\pure关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关键字的位置"><span class="nav-number">3.0.1.</span> <span class="nav-text">关键字的位置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#constant和view"><span class="nav-number">3.0.2.</span> <span class="nav-text">constant和view</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pure"><span class="nav-number">3.0.3.</span> <span class="nav-text">pure</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么会有这些限制"><span class="nav-number">3.0.4.</span> <span class="nav-text">为什么会有这些限制</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#可见性"><span class="nav-number">4.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#modifier"><span class="nav-number">5.</span> <span class="nav-text">modifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字assert-require-revert"><span class="nav-number">6.</span> <span class="nav-text">关键字assert\require\revert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#solidity自带的特殊变量和函数"><span class="nav-number">7.</span> <span class="nav-text">solidity自带的特殊变量和函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fallback函数"><span class="nav-number">9.</span> <span class="nav-text">fallback函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#send"><span class="nav-number">10.</span> <span class="nav-text">send</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#payable"><span class="nav-number">11.</span> <span class="nav-text">payable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">12.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delegatecall"><span class="nav-number">13.</span> <span class="nav-text">delegatecall</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SkyBlues</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://skyblues-notes.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.skybluues.com/solidity学习笔记/';
+          this.page.identifier = 'solidity学习笔记/';
+          this.page.title = 'solidity学习笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://skyblues-notes.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WAglmhFLtdNGkNwm4VbihXur-gzGzoHsz", "JJJi6tqpNhS9gCRDluWUF7Kv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

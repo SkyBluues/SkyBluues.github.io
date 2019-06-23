@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="essay">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="计算机系统漫游 信息就是位+上下文编写的任何一个程序源代码都是文本文件，文本文件以ASCII码或Unicode编码的形式存在硬盘上。本质上来说，这些文件都是二进制 0 1 序列。这些 0 1 能够表示信息，是通过上下文关系来体现的。 程序被其他程序翻译成不同的格式C语言的源程序要变成可执行程序，要经过一系列的步骤。在linux上通过gcc提供的各种工具将其翻译：gcc -o hello hello">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP读书笔记">
+<meta property="og:url" content="http://www.skybluues.com/CSAPP读书笔记/index.html">
+<meta property="og:site_name" content="SkyBlues Notes">
+<meta property="og:description" content="计算机系统漫游 信息就是位+上下文编写的任何一个程序源代码都是文本文件，文本文件以ASCII码或Unicode编码的形式存在硬盘上。本质上来说，这些文件都是二进制 0 1 序列。这些 0 1 能够表示信息，是通过上下文关系来体现的。 程序被其他程序翻译成不同的格式C语言的源程序要变成可执行程序，要经过一系列的步骤。在linux上通过gcc提供的各种工具将其翻译：gcc -o hello hello">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://www.skybluues.com/.com//程序编译过程.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//系统硬件组成图.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//计算机系统的抽象表示.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//虚拟地址空间.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//IEEE浮点数格式.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//IEEE浮点数表示.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//stack_frame.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//可重定位目标文件格式.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//可执行目标文件格式.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//异常类别.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//页表.png">
+<meta property="og:image" content="http://www.skybluues.com/.com//文件描述符.png">
+<meta property="og:updated_time" content="2019-06-23T09:54:00.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSAPP读书笔记">
+<meta name="twitter:description" content="计算机系统漫游 信息就是位+上下文编写的任何一个程序源代码都是文本文件，文本文件以ASCII码或Unicode编码的形式存在硬盘上。本质上来说，这些文件都是二进制 0 1 序列。这些 0 1 能够表示信息，是通过上下文关系来体现的。 程序被其他程序翻译成不同的格式C语言的源程序要变成可执行程序，要经过一系列的步骤。在linux上通过gcc提供的各种工具将其翻译：gcc -o hello hello">
+<meta name="twitter:image" content="http://www.skybluues.com/.com//程序编译过程.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.skybluues.com/CSAPP读书笔记/">
+
+
+
+
+
+  <title>CSAPP读书笔记 | SkyBlues Notes</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-102673554-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SkyBlues Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Its now or never!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/CSAPP读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SkyBlues">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SkyBlues Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSAPP读书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/CSAPP读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="CSAPP读书笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/CSAPP读书笔记/" class="leancloud_visitors" data-flag-title="CSAPP读书笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="计算机系统漫游"><a href="#计算机系统漫游" class="headerlink" title="计算机系统漫游"></a>计算机系统漫游</h2><hr>
+<h4 id="信息就是位-上下文"><a href="#信息就是位-上下文" class="headerlink" title="信息就是位+上下文"></a>信息就是位+上下文</h4><p>编写的任何一个程序源代码都是文本文件，文本文件以ASCII码或Unicode编码的形式存在硬盘上。本质上来说，这些文件都是二进制 0 1 序列。这些 0 1 能够表示信息，是通过上下文关系来体现的。</p>
+<h4 id="程序被其他程序翻译成不同的格式"><a href="#程序被其他程序翻译成不同的格式" class="headerlink" title="程序被其他程序翻译成不同的格式"></a>程序被其他程序翻译成不同的格式</h4><p>C语言的源程序要变成可执行程序，要经过一系列的步骤。在linux上通过gcc提供的各种工具将其翻译：<br>gcc -o hello hello.c<br>这就能将hello.c源代码翻译成hello可执行程序，具体经过了 <strong>预处理</strong> <strong>编译</strong> <strong>汇编</strong> <strong>链接</strong>，如下图<br><img src="/.com//程序编译过程.png" alt> </p>
+<ul>
+<li>预处理<br>调用预处理器。根据以字符#开头的命令，修改原始C程序。将所有的头文件展开，将所有的宏定义替换，将所有的注释删除，将所有的条件编译不成立的部分删除。</li>
+<li>编译<br>调用编译器。将文本文件hello.i翻译成文本文件hello.s，它包含一个汇编语言程序。<br>-汇编<br>将汇编程序的文本文件翻译成机器语言指令，也就是二进制文件的01序列，把这些指令打包成可重定位目标程序的格式，即hello.o。</li>
+<li>链接<br>分析各个目标文件之间的依赖关系，将所有用到的目标文件链接起来，重定位各个目标文件中的全局引用。</li>
+</ul>
+<h4 id="系统的硬件组成"><a href="#系统的硬件组成" class="headerlink" title="系统的硬件组成"></a>系统的硬件组成</h4><p>一个典型的系统硬件组成如下图：<br><img src="/.com//系统硬件组成图.png" alt><br>主要有总线，I/O设备，主存，处理器，</p>
+<h4 id="高速缓存"><a href="#高速缓存" class="headerlink" title="高速缓存"></a>高速缓存</h4><p>现代计算机的运行时间很大一部分是用在数据传递上，所以在各个部分之间增加缓存很重要，缓存用于存储最近被访问的数据，由于程序的局部性原理，这大大提高的程序的速度。</p>
+<h4 id="操作系统管理硬件"><a href="#操作系统管理硬件" class="headerlink" title="操作系统管理硬件"></a>操作系统管理硬件</h4><p>计算机系统的抽象表示：<br><img src="/.com//计算机系统的抽象表示.png" alt> </p>
+<ul>
+<li>进程<br>进程是现代操作系统的一个抽象概念，是对一个正在运行的程序的一种抽象。它让程序看起来独占整个系统资源，包括CPU，内存，IO等。多个进程同时运行在系统上时，操作系统要对进程进行调度，当一个进程切换到另一个进程时，要进行上下文切换。</li>
+<li>线程<br>线程是进程中的一个执行控制流。</li>
+<li>虚拟内存<br>虚拟内存是一个抽象概念，它为每个进程提供了一个假象，即每个进程都在独占的使用内存。每个进程看到的内存都是一致的，称为虚拟地址空间，下图是Linux进程的虚拟地址空间<br><img src="/.com//虚拟地址空间.png" alt> </li>
+<li>文件<br>在Linux系统上，所有的东西都被抽象为文件，包括普通文件，存储设备，IO，网络套件字等，对这些东西的读写都能通过统一的接口实现，即文件的读写。<h4 id="计算机系统中抽象的重要性"><a href="#计算机系统中抽象的重要性" class="headerlink" title="计算机系统中抽象的重要性"></a>计算机系统中抽象的重要性</h4>所有的问题，都能通过添加一个抽象的中间层解决。</li>
+</ul>
+<h2 id="第二章-信息的表示和处理"><a href="#第二章-信息的表示和处理" class="headerlink" title="第二章 信息的表示和处理"></a>第二章 信息的表示和处理</h2><hr>
+<h4 id="字节顺序"><a href="#字节顺序" class="headerlink" title="字节顺序"></a>字节顺序</h4><p>计算机的字节顺序体现在当一个数据需要多个字节存储的时候，这些字节以何种顺序存储。字节顺序分为大端和小端。大端是将高位放在低地址，低位放在高地址，小端相反。大部分系统采用的是小端法，</p>
+<h4 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h4><p>当移位的数量k大于数据自身的位数w时，则移动（k%w）位。<br>左移，在右端补0<br>右移，分为算术移位和逻辑移位。对于无符号数都一样，在左端补0。对于有符号数，算术移位补最高位，逻辑移位补0。</p>
+<h4 id="整数的表示"><a href="#整数的表示" class="headerlink" title="整数的表示"></a>整数的表示</h4><p>那些数据类型的长度，都没有记忆的必要，只要记住计算机如何表示有符号数和无符号数就可以了。</p>
+<ul>
+<li>无符号数表示<br>就按照二进制的正常位级表示。<blockquote>
+<p>1111 -&gt; 8+4+2+1</p>
+</blockquote>
+</li>
+<li><p>有符号数<br>最高位表示负的权值，其他的一样。</p>
+<blockquote>
+<p>1111 -&gt; -8+4+2+1<br>1000 -&gt; -8<br>0101 -&gt; 4+1</p>
+</blockquote>
+</li>
+<li><p>有符号数和无符号数的转换<br>相同的长度，保持在位级表示上的一致性。</p>
+</li>
+<li><p>扩展一个数字的位表示<br>无符号数用 0 扩展，有符合数用符号位扩展。<br>当不同长度的有符号数和无符号数转换时，先转成相同的长度，再进行类型转换。如：</p>
+<blockquote>
+<p>short -&gt; unsigned==short -&gt; int -&gt; unsigned</p>
+</blockquote>
+</li>
+<li><p>截断数字<br>无符号数，直接截断高位<br>有符号数，先按无符号数直接截断，然后将最高位转为符号位。</p>
+</li>
+<li><p>无符号数和有符号数加减法<br>记住一条，都按照二进制表示的加法运算，超出表示范围的截断。然后表示对应的无符号数和有符号数。<br>减法转成加法做。<br>主要有符号数是补码表示。</p>
+</li>
+<li><p>补码的非<br>和正常的数学一样，唯一例外是负数的最大值，非是其本身。</p>
+<blockquote>
+<p>0X80 -&gt; 0X80</p>
+</blockquote>
+</li>
+<li><p>乘除法<br>计算机的乘除法都尽量转成加法和移位。</p>
+</li>
+<li><p>IEEE浮点数表示<br><img src="/.com//IEEE浮点数格式.png" alt><br><img src="/.com//IEEE浮点数表示.png" alt> </p>
+</li>
+</ul>
+<h2 id="第三章-程序的机器级表示"><a href="#第三章-程序的机器级表示" class="headerlink" title="第三章 程序的机器级表示"></a>第三章 程序的机器级表示</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>这一章主要就是讲在汇编层面看程序，介绍了最新的x86-64架构下的指令集，重点是<strong>条件，循环，分支</strong>的汇编实现，以及<strong>函数调用</strong>过程。</p>
+<h4 id="零碎的点"><a href="#零碎的点" class="headerlink" title="零碎的点"></a>零碎的点</h4><ul>
+<li><p>重要的寄存器</p>
+<ul>
+<li>PC寄存器。在x86-64中用%rip表示，给出将要执行的下一条指令在内存中的地址。</li>
+<li>16个整数寄存器。分别存储64位的值，这些寄存器可以存储地址或整数数据。</li>
+<li>条件码寄存器。都是位存储的标志位，保存最近执行的算术或逻辑指令的状态信息，在条件判断的时候用到。</li>
+</ul>
+</li>
+<li><p>数据格式<br>  汇编中以字（WORD）为单位，1，2，4，8字节分别用字节（b），字（w），双字（l），四字（q）表示。</p>
+</li>
+<li><p>寄存器表示<br>  为了向后兼容，同一个寄存器都有多个名称，分别支持1, 2, 4, 8个字节操作，如%al, %ax, %eax, %rax分别表示%rax寄存器的1, 2, 4, 8字节。</p>
+<ul>
+<li>指令族<pre><code>为了对应不同数据长度的操作，每种指令都有一个指令集，用于操作不同大小的数据，如MOV有movb, movw, movl, movq表示对1,2,4,8字节的移动。
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h4 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h4><p>C语言中的if-else, do-while, while, for, switch，本质上都是用jump跳转实现的，当然switch还涉及到跳转表，稍微复杂一点。</p>
+<ul>
+<li><p>基础<br>  CPU中维护着一组单个位的条件码寄存器，他们描述了最近的算术或逻辑操作的属性。常用的条件码有：</p>
+<ol>
+<li>CF：进位标志。最近的操作使最高位产生了进位。可用来检测无符号数的溢出。</li>
+<li>ZF：零标志。最近的操作得出的结果为0.</li>
+<li>SF：符号标志。最近的操作得到的结果为负数。</li>
+<li>OF：溢出标志。最近的操作导致一个补码溢出。</li>
+</ol>
+</li>
+<li><p><strong>跳转</strong></p>
+</li>
+</ul>
+<ol>
+<li><p>直接跳转<br>jmp .L1<br>程序会直接跳转到标记为 .L1 的代码段</p>
+</li>
+<li><p>间接跳转<br>jmp <em>%rax<br>用寄存器%rax中的值作为跳转目标<br>jmp </em>(%rax)<br>用%rax中的值作为读地址，从内存中读出跳转目标。</p>
+</li>
+<li><p>条件跳转<br>指令集中有很多条件跳转指令，通过判断条件码寄存器中的值进行跳转。跳转地址通常为间接地址，也就是相对于当前PC的偏移，这样程序在链接的时候就不需要改。</p>
+</li>
+<li><p>if - else 实现<br>简单的实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line">	<span class="keyword">if</span> (test-expr)</span><br><span class="line">		then-statement</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">else</span>-statement</span><br><span class="line"><span class="comment">// 仿汇编形式</span></span><br><span class="line">	t=test-expr;</span><br><span class="line">	<span class="keyword">if</span>(!t)</span><br><span class="line">		<span class="keyword">goto</span> fasle;</span><br><span class="line">	then-statement</span><br><span class="line">	<span class="keyword">goto</span> done;</span><br><span class="line"><span class="literal">false</span>:</span><br><span class="line">	<span class="keyword">else</span>-statement</span><br><span class="line">doen:</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>do-while 实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// C++</span><br><span class="line">long fact_do(long n)</span><br><span class="line">&#123;</span><br><span class="line">	long result=1;</span><br><span class="line">	do &#123;</span><br><span class="line">		result *= n;</span><br><span class="line">		n = n -1;</span><br><span class="line">	&#125; while (n &gt; 1);</span><br><span class="line">	return result;</span><br><span class="line"></span><br><span class="line">// 仿汇编</span><br><span class="line">long fact_do_goto(long n)</span><br><span class="line">&#123;</span><br><span class="line">	long result = 1;</span><br><span class="line">loop:</span><br><span class="line">	result *= n;</span><br><span class="line">	n = n - 1;</span><br><span class="line">	if (n &gt; 1)</span><br><span class="line">		goto loop;</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br><span class="line">		</span><br><span class="line">// 汇编</span><br><span class="line">fact_do:</span><br><span class="line">	movl		$1, %eax</span><br><span class="line">.L2:</span><br><span class="line">	imulq		%rdi, %rax</span><br><span class="line">	subq		$1, %rdi</span><br><span class="line">	cmpq		$1, %rdi</span><br><span class="line">	jg			.L2</span><br><span class="line">	rep; ret</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>while 实现<br>while 的实现和 do-while类似，只不过要在loop前加一次test。</p>
+</li>
+<li><p>for 实现<br>for 可以直接翻译成 while<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(init-expr; test-expr; update-expr)</span><br><span class="line">	body-statement</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>翻译成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init-expr;</span><br><span class="line">while(test-expr) &#123;</span><br><span class="line">	body-statement</span><br><span class="line">	update-expr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>翻译成伪汇编：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">	init-expr;</span><br><span class="line">	goto test;</span><br><span class="line">loop: </span><br><span class="line">	body-statement</span><br><span class="line">	update-expr;</span><br><span class="line">test:</span><br><span class="line">	t=test-expr;</span><br><span class="line">	if(t)</span><br><span class="line">		goto loop;</span><br><span class="line">// 或者</span><br><span class="line">	init-expr;</span><br><span class="line">	t=test-expr;</span><br><span class="line">	if(!t)</span><br><span class="line">		goto done;</span><br><span class="line">loop:</span><br><span class="line">	body-statment</span><br><span class="line">	update-expr;</span><br><span class="line">	t=test-expr;</span><br><span class="line">	if(t)</span><br><span class="line">		goto loop;</span><br><span class="line">done:</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>switch<br>switch 才是重点<br>switch通过生成一个跳转表，存放各个代码段的入口地址。首先，条件表达式的负数会自动转为对应的无符号数，并减去所有case 的最小值，也就是这张表维护的是从索引 0 到 max-min 之间的所有地址，空的地址是 default（有） 或 switch-case（没有） 的下一句。执行的时候计算条件表达式的值，先判断是否大于索引最大值，是直接跳到最后，不是就加上跳转表的首地址，直接取出对应的代码段的地址（跳转表放在 .rodata 段，目测在目标文件中在 .text 段）。注意，由于跳转只是跳到代码的入口地址，所以代码段中没有break（goto），程序会顺序运行下去。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">// C 源码</span><br><span class="line">void switch_eg(long x, long n, long *dest)</span><br><span class="line">&#123;</span><br><span class="line">	long val = x;</span><br><span class="line">	switch(n) &#123;</span><br><span class="line">	case 100:</span><br><span class="line">		val *= 13;</span><br><span class="line">		break;</span><br><span class="line">	case 102:</span><br><span class="line">	 	val += 10;</span><br><span class="line">	 case 103:</span><br><span class="line">	 	val += 11;</span><br><span class="line">	 	break;</span><br><span class="line">	 case 104:</span><br><span class="line">	 case 106:</span><br><span class="line">	 	val *= val;</span><br><span class="line">	 	break;</span><br><span class="line">	 default:</span><br><span class="line">	 	val = 0;</span><br><span class="line">	&#125;</span><br><span class="line">	*dest = val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//  C 仿汇编</span><br><span class="line">void switch_eg_impl(long x, long n, long *dest)</span><br><span class="line">&#123;</span><br><span class="line">	// gcc 提供了引用代码段指针的功能</span><br><span class="line">	static void *jt[7] = &#123;</span><br><span class="line">		&amp;&amp;loc_A, &amp;&amp;loc_def, &amp;&amp;loc_B,&amp;&amp;loc_C, &amp;&amp;loc_D, &amp;&amp;loc_def, &amp;&amp;loc_D</span><br><span class="line">	&#125;;</span><br><span class="line">	unsigned long index = n -100;</span><br><span class="line">	long val;</span><br><span class="line">	if(index&gt;6)</span><br><span class="line">		goto loc_def;</span><br><span class="line">	goto *jt[index];</span><br><span class="line">loc_A:</span><br><span class="line">	val = x * 13;</span><br><span class="line">	goto done;</span><br><span class="line">loc_B:</span><br><span class="line">	x = x+10;</span><br><span class="line">loc_C:</span><br><span class="line">	val = x + 11;</span><br><span class="line">	goto done;</span><br><span class="line">loc_D:</span><br><span class="line">	val = x * x;</span><br><span class="line">	goto done;</span><br><span class="line">loc_def:</span><br><span class="line">	val = 0;</span><br><span class="line">done:</span><br><span class="line">	*dest = val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 汇编</span><br><span class="line">// void switch_eg(long x, long n, long *dest)</span><br><span class="line">x in %rdi, n in %rsi, dest in %rdx</span><br><span class="line">switch_eg:</span><br><span class="line">	subq	$100, %rsi</span><br><span class="line">	cmpq	$6, %rsi</span><br><span class="line">	ja		.L8</span><br><span class="line">	jmp	*.L4(, %rsi, 8)</span><br><span class="line">.L3:</span><br><span class="line">	leaq	(%rdi, %rdi, 2), %rax</span><br><span class="line">	leaq	(%rdi, %rax, 4), %rdi</span><br><span class="line">	jmp	.L2</span><br><span class="line">.L5:</span><br><span class="line">	addq	$10, %rdi</span><br><span class="line">.L6:</span><br><span class="line">	addq	$11, %rdi</span><br><span class="line">	jmp	.L2</span><br><span class="line">.L7:</span><br><span class="line">	imulq	%rdi, %rdi</span><br><span class="line">	jmp	.L2</span><br><span class="line">.L8:</span><br><span class="line">	movl	$0, %edi</span><br><span class="line">.L2:</span><br><span class="line">	movq	%rdi, (%rdx)</span><br><span class="line">	ret</span><br><span class="line">	</span><br><span class="line">// 跳转表</span><br><span class="line">	.section			.rodata</span><br><span class="line">	.align	8</span><br><span class="line">.L4:</span><br><span class="line">	.quad		.L3</span><br><span class="line">	.quad		.L8</span><br><span class="line">	.quad		.L5</span><br><span class="line">	.quad		.L6</span><br><span class="line">	.quad		.L7</span><br><span class="line">	.quad 		.L8</span><br><span class="line">	.quad		.L7</span><br><span class="line">	subq</span><br></pre></td></tr></table></figure>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><ul>
+<li><p>概括<br>过程也就是函数调用。过程主要是通过栈帧来实现的。下图是一张栈帧的示意图。<br><img src="/.com//stack_frame.png" alt><br>过程调用要实现数据的传递，控制的传递。函数传参首先使用的是寄存器，x86-64下寄存其最多可以保存6个参数，超过6个要用栈来传递。过程中使用的局部变量也会首先选择寄存器。在函数调用中，要保持调用者的上下文，包括寄存器值，PC等。</p>
+</li>
+<li><p>控制传递<br>调用的时候先把调用语句的下一句的地址入栈，然后跳转到被调用者的入口，执行结束以后，将之前保存的地址出栈，赋值给PC。</p>
+</li>
+<li><p>数据传递<br>传参数首先是用寄存器，最多可以传6个，多于6个的用栈来传。<br>返回值用一个寄存器保存，如果返回值很大，那么传参的时候会多传一个指针，且在栈上多开一块空间保存这个返回值，指针指向这个空间，在被调函数里面构造这块空间，并且将指针保持在寄存器中。</p>
+</li>
+<li><p>栈上的局部存储<br>局部变量必须存储在栈上的有几种情况：<br>1 寄存器不足够存放所有的本地数据<br>2 对一个局部变量使用地址运算符‘&amp;’，<br>3 数组或结构<br>在栈上分配空间也就是减少栈顶指针的值。</p>
+</li>
+<li><p>寄存器上的局部存储<br>寄存器是对所有过程共享的。但是过程调用的时候要保证返回时能恢复。所以在过程调用时，寄存器的值要保存起来，一部分是调用者保存的，一部分是被调用者保存的，在过程返回时，要恢复原来的值。</p>
+</li>
+</ul>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>对数组元素的引用，就是用指向数组开头的指针加上元素的长度乘以索引。<br>如有数组 int A[N]，访问第 i 个元素，假设A 的地址存在寄存器 a，要取出元素放在寄存器 b，mov (a,i,4) b。</p>
+<h4 id="异质的数据结构"><a href="#异质的数据结构" class="headerlink" title="异质的数据结构"></a>异质的数据结构</h4><ul>
+<li><p>结构体<br>和数组的访问类似，用结构的头指针加上各个字段的偏移。这个过程在编译期间完成，所以在汇编中就不保持任何数据结构信息了。</p>
+</li>
+<li><p>数据对齐<br>在结构体中，任何字段的起始地址都是自己长度的整数倍，数组按单个元素算，且最终的结构体长度要是结构中最大长度的整数倍。</p>
+</li>
+</ul>
+<h4 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h4><p>浮点数用另外一组有别与整数寄存器的寄存器来保存，传递参数的时候也是用另外的一组寄存器，它的操作类似于整数操作，不过用别的指令。</p>
+<h2 id="第七章-链接"><a href="#第七章-链接" class="headerlink" title="第七章 链接"></a>第七章 链接</h2><hr>
+<h4 id="编译器驱动程序"><a href="#编译器驱动程序" class="headerlink" title="编译器驱动程序"></a>编译器驱动程序</h4><p>大多数编译系统提供编译器驱动程序，它代表用户在需要时调用语言预处理器、编译器、汇编器和链接器。</p>
+<blockquote>
+<p>过程：预处理 -&gt; 编译 -&gt; 汇编 -&gt; 链接<br>相应的文件变化：源文件.c -&gt; 中间文件.i -&gt; 可重定位目标文件.o -&gt; 可执行文件</p>
+</blockquote>
+<h4 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h4><p>静态链接将多个目标文件组合起来，形成一个可执行文件，主要完成两个任务：</p>
+<ul>
+<li>符号解析<br>将每个符号引用正好和一个符号定义关联起来。</li>
+<li>重定位<br>链接其通过把每个符号定义与一个内存位置关联起来，从而重定位这些节，然后修改所有对这些符号的引用，使得它们指向这个内存位置。</li>
+</ul>
+<h4 id="可重定位目标文件"><a href="#可重定位目标文件" class="headerlink" title="可重定位目标文件"></a>可重定位目标文件</h4><p>典型的ELF格式：<br><img src="/.com//可重定位目标文件格式.png" alt> </p>
+<p>其中几个节的内容：</p>
+<ul>
+<li>.text：机器代码</li>
+<li>.rodata：只读数据，比如字面常量字符串和switch语句的跳转表。</li>
+<li>.data：已初始化的全局和静态C变量</li>
+<li>.bss：未初始化的全局和静态C变量，以及所有被初始化为0的全局或静态变量。在目标文件中这个节不占据实际的空间，仅仅是一个占位符。</li>
+<li>.symtab：一个符号表，它存放在程序中定义和引用的函数和全局变量的信息。</li>
+<li>.rel.text：一个.text节中位置的列表。</li>
+<li>.rel.data：被模块引用或定义的所有全局变量的重定位信息。</li>
+</ul>
+<h4 id="符号和符号表"><a href="#符号和符号表" class="headerlink" title="符号和符号表"></a>符号和符号表</h4><p>每个可重定位目标模块 <em>m</em> 都有一个符号表，它包含了 <em>m</em> 定义和引用的符号信息。包括文件内的所有函数，全局变量，带有static的变量，以及引用的外部符号。<br>符号表中的每一项都是一个结构体，表示一个符号的信息。</p>
+<h4 id="符号解析"><a href="#符号解析" class="headerlink" title="符号解析"></a>符号解析</h4><p>编译器在遇到一个不再当前模块定义的引用时，会假设在其他模块定义，会生成一个链接器符号表条目，交给链接器处理，如果链接器在各个模块中没有找到定义，就会报出一条错误，终止。</p>
+<ul>
+<li><p>符号多重定义<br>在编译时，编译器向汇编器输出每个全局符号，或者是强或者是弱，函数和已初始化的全局变量是强，未初始化的全局变量是弱。Linux根据下面的规则处理符号多重定义：</p>
+<blockquote>
+<p>不允许有多个同名的强符号；<br>如果有一个强符合和多个弱符号同名，选择强符号；<br>如果多个弱符号同名，任意选一个。</p>
+</blockquote>
+</li>
+<li><p>静态库<br>Linux的静态库是一些 .o 目标文件的集合，文件后缀 .a，在文件中有一个头部来描述每个目标文件的大小和位置。</p>
+</li>
+</ul>
+<h4 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h4><p>目标文件合并成可执行文件时，会把各个目标文件的相同的段合并到一起，然后重新定位符号的位置，对于符号的引用，通过编译时产生的重定位表条目来确定。</p>
+<h4 id="可执行那个目标文件"><a href="#可执行那个目标文件" class="headerlink" title="可执行那个目标文件"></a>可执行那个目标文件</h4><p>格式：<br><img src="/.com//可执行目标文件格式.png" alt> </p>
+<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>当在shell中运行一个可执行程序，首先调用fork复制一个子进程，然后调用execve将虚拟内存空间中的东西删除，创建新的内存段，做好内存映射，然后将控制转移到_start地址执行。</p>
+<h4 id="动态链接（这部分没看懂）"><a href="#动态链接（这部分没看懂）" class="headerlink" title="动态链接（这部分没看懂）"></a>动态链接（这部分没看懂）</h4><p>直接看这个吧：<a href="http://ybin.cc/compiler/position-independent-code-in-shared-library/" target="_blank" rel="noopener">http://ybin.cc/compiler/position-independent-code-in-shared-library/</a></p>
+<p>动态链接库后缀为 .so ，使用了位置无关代码技术（PIC）。</p>
+<ul>
+<li><p>PIC数据引用<br>数据和代码的相对位置是一定的，所以可以通过代码的偏移量来确定数据的位置。</p>
+</li>
+<li><p>PIC函数调用<br>延迟绑定。用一个表保持各个函数的地址，出</p>
+</li>
+</ul>
+<h4 id="打桩"><a href="#打桩" class="headerlink" title="打桩"></a>打桩</h4><p>感觉有点像windows的钩子。<br>改变程序中调用的入口，从而改变程序应有的执行流。</p>
+<h2 id="异常控制流"><a href="#异常控制流" class="headerlink" title="异常控制流"></a>异常控制流</h2><hr>
+<h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>异常就是控制流中的突变，用来响应处理器中的某写变化。<br>事件就是处理器的状态发生了变化。当处理器检测到有事件发生，就会通过一张叫做异常表的跳转表，进行一个间接过程调用，到一个专门设计用来处理这类事件的操作系统子程序（异常处理程序）。<br>操作系统启动的时候，会产生一张异常表，里面的每个条目对应一个异常处理程序的地址。<br>异常处理工作在内核模式下。</p>
+<ul>
+<li>异常类别<br>异常可分为：中断、陷阱、故障、终止。<br><img src="/.com//异常类别.png" alt> </li>
+</ul>
+<p>中断<br>中断是异步发生的，来自处理器外部的I/O设备的信号的结果。I/O设备向处理器芯片的一个引脚发信号，并将异常号放到系统总线上，来触发中断。其他的异常类型是同步发生的，是执行当前指令的结果。</p>
+<p>陷阱和系统调用<br>陷阱是有意的异常，是执行一条指令的结果，典型应用是 <em>系统调用</em>。比如读一个文件，首先产生系统调用，进入异常处理程序，在这个程序中再查询系统调用表，调用对应的内核函数。</p>
+<p>故障<br>故障由错误引起，从异常处理返回时，回到原指令继续执行（或退出），典型的就是缺页。</p>
+<p>终止<br>是不可恢复的致命错误造成的。</p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>一个逻辑流的执行在时间上与另一个流重叠，称为并发流。</p>
+<p>操作系统分为用户模式和内核模式。内核模式享有特权，能执行访问所有的数据和代码。模式是用一个控制寄存器保存的，只有内核态的代码能够修改。用户态可以通过系统调用、故障、中断等进入内核态。</p>
+<h4 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h4><p>从程序员的角度，进程总是处于三种状态：运行，停止，终止。<br>fork函数调用一次，返回两次，在父进程中返回子进程id，在子进程中返回0。fork建立的子进程几乎但不完全与父进程相同，他们拥有相同的虚拟地址空间，除了部分内核态的东西不同。通过写时复制，直到要改变内存的时候才进行复制。</p>
+<p>子进程由于某种原因终止时，内核并不会立即清除它，而是保持成僵死进程，必须要有父进程回收。若父进程已死，则统一变成init进程的子进程。</p>
+<p>execve函数在当前进程的上下文中加载并运行一个新进程，execve调用一次，返回0 次。它把当前进程的环境删除，映射新的进程。</p>
+<h4 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h4><p>信号允许进程和内核中断其他进程<br>内核会检测进程的未被阻塞的待处理信号的集合，如果是空，继续执行，非空，选择一个信号，内核强制进程接受信号。</p>
+<h2 id="第九章-虚拟内存"><a href="#第九章-虚拟内存" class="headerlink" title="第九章 虚拟内存"></a>第九章 虚拟内存</h2><hr>
+<h4 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h4><p>进程启动时，操作系统都会为进程建立一个页表，主要是虚拟内存到硬盘对应位置的映射关系。下图是页表示意图：<br><img src="/.com//页表.png" alt><br>有效位为1表示已分配，0表示未分配。<br>地址要么表示物理页号，要么表示磁盘地址。</p>
+<p>当CPU需要的地址不再页表中，会触发缺页异常，调用异常处理程序，通过系统的调度，把需要的页映射到内存，然后重新来一次。</p>
+<p><strong>这几章的内容都不是很理解，所有就简单的记一下</strong></p>
+<h4 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h4><p>内核用三个相关的数据结构来表示打开的文件：描述符表、文件表、v-node表。</p>
+<ul>
+<li>每个进程都有它独立的描述符表，它的表项由进程打开的文件描述符来索引，每个打开的描述符表项指向文件表中的一个表项。如标准输入、输出、错误分别是0，1，2.</li>
+<li>打开文件的集合是由一张文件表来表示的，所有的进程共享这张表。每个文件表的表项组成包括当前的文件位置、引用计数，以及一个指向v-node表中对应表项的指针。关闭一个描述符会减少相应的文件表表项中的引用计数。当引用计数变为0,内核会删除这个表项。</li>
+<li>所有的进程共享这张v-node表。每个表项包含stat结构中的大多数信息。</li>
+</ul>
+<p><img src="/.com//文件描述符.png" alt> </p>
+<ul>
+<li>I/O重定向，假如将标准输出定向到一个打开的文件4，那么就是将描述符表中索引为4的内容复制到索引为1的内容。</li>
+</ul>
+<h4 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/effective_c++读书笔记/" rel="next" title="effective_c++读书笔记">
+                <i class="fa fa-chevron-left"></i> effective_c++读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/solidity学习笔记/" rel="prev" title="solidity学习笔记">
+                solidity学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="SkyBlues">
+          <p class="site-author-name" itemprop="name">SkyBlues</p>
+           
+              <p class="site-description motion-element" itemprop="description">Good Good Study Day Day Up</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机系统漫游"><span class="nav-number">1.</span> <span class="nav-text">计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#信息就是位-上下文"><span class="nav-number">1.0.1.</span> <span class="nav-text">信息就是位+上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序被其他程序翻译成不同的格式"><span class="nav-number">1.0.2.</span> <span class="nav-text">程序被其他程序翻译成不同的格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统的硬件组成"><span class="nav-number">1.0.3.</span> <span class="nav-text">系统的硬件组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高速缓存"><span class="nav-number">1.0.4.</span> <span class="nav-text">高速缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统管理硬件"><span class="nav-number">1.0.5.</span> <span class="nav-text">操作系统管理硬件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算机系统中抽象的重要性"><span class="nav-number">1.0.6.</span> <span class="nav-text">计算机系统中抽象的重要性</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-信息的表示和处理"><span class="nav-number">2.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字节顺序"><span class="nav-number">2.0.1.</span> <span class="nav-text">字节顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移位运算"><span class="nav-number">2.0.2.</span> <span class="nav-text">移位运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整数的表示"><span class="nav-number">2.0.3.</span> <span class="nav-text">整数的表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-程序的机器级表示"><span class="nav-number">3.</span> <span class="nav-text">第三章 程序的机器级表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">3.0.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零碎的点"><span class="nav-number">3.0.2.</span> <span class="nav-text">零碎的点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制"><span class="nav-number">3.0.3.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">3.0.4.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">3.0.5.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异质的数据结构"><span class="nav-number">3.0.6.</span> <span class="nav-text">异质的数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点运算"><span class="nav-number">3.0.7.</span> <span class="nav-text">浮点运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七章-链接"><span class="nav-number">4.</span> <span class="nav-text">第七章 链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编译器驱动程序"><span class="nav-number">4.0.1.</span> <span class="nav-text">编译器驱动程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态链接"><span class="nav-number">4.0.2.</span> <span class="nav-text">静态链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可重定位目标文件"><span class="nav-number">4.0.3.</span> <span class="nav-text">可重定位目标文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号和符号表"><span class="nav-number">4.0.4.</span> <span class="nav-text">符号和符号表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号解析"><span class="nav-number">4.0.5.</span> <span class="nav-text">符号解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定位"><span class="nav-number">4.0.6.</span> <span class="nav-text">重定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可执行那个目标文件"><span class="nav-number">4.0.7.</span> <span class="nav-text">可执行那个目标文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载"><span class="nav-number">4.0.8.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态链接（这部分没看懂）"><span class="nav-number">4.0.9.</span> <span class="nav-text">动态链接（这部分没看懂）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打桩"><span class="nav-number">4.0.10.</span> <span class="nav-text">打桩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常控制流"><span class="nav-number">5.</span> <span class="nav-text">异常控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异常"><span class="nav-number">5.0.1.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">5.0.2.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程控制"><span class="nav-number">5.0.3.</span> <span class="nav-text">进程控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信号"><span class="nav-number">5.0.4.</span> <span class="nav-text">信号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第九章-虚拟内存"><span class="nav-number">6.</span> <span class="nav-text">第九章 虚拟内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页表"><span class="nav-number">6.0.1.</span> <span class="nav-text">页表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享文件"><span class="nav-number">6.0.2.</span> <span class="nav-text">共享文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络编程"><span class="nav-number">6.0.3.</span> <span class="nav-text">网络编程</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SkyBlues</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://skyblues-notes.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.skybluues.com/CSAPP读书笔记/';
+          this.page.identifier = 'CSAPP读书笔记/';
+          this.page.title = 'CSAPP读书笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://skyblues-notes.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WAglmhFLtdNGkNwm4VbihXur-gzGzoHsz", "JJJi6tqpNhS9gCRDluWUF7Kv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

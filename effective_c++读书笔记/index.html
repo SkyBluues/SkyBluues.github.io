@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="essay">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="条款1：视C++为一个语言联邦C++是一个庞大复杂的语言，它看上去更像是多个语言的联合，所以可以将它分为几个次语言：  C Object-Oriented C++ Template C++ STL  每个部分都有自己的规约，用什么规则取决于用哪部分。 条款2：尽量以const, enum, inline 替换 #define#define 是在预处理阶段完成的，预处理器只是将define的部分以字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="effective_c++读书笔记">
+<meta property="og:url" content="http://www.skybluues.com/effective_c++读书笔记/index.html">
+<meta property="og:site_name" content="SkyBlues Notes">
+<meta property="og:description" content="条款1：视C++为一个语言联邦C++是一个庞大复杂的语言，它看上去更像是多个语言的联合，所以可以将它分为几个次语言：  C Object-Oriented C++ Template C++ STL  每个部分都有自己的规约，用什么规则取决于用哪部分。 条款2：尽量以const, enum, inline 替换 #define#define 是在预处理阶段完成的，预处理器只是将define的部分以字">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-06-23T09:32:26.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="effective_c++读书笔记">
+<meta name="twitter:description" content="条款1：视C++为一个语言联邦C++是一个庞大复杂的语言，它看上去更像是多个语言的联合，所以可以将它分为几个次语言：  C Object-Oriented C++ Template C++ STL  每个部分都有自己的规约，用什么规则取决于用哪部分。 条款2：尽量以const, enum, inline 替换 #define#define 是在预处理阶段完成的，预处理器只是将define的部分以字">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.skybluues.com/effective_c++读书笔记/">
+
+
+
+
+
+  <title>effective_c++读书笔记 | SkyBlues Notes</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-102673554-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SkyBlues Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Its now or never!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/effective_c++读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SkyBlues">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SkyBlues Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">effective_c++读书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/effective_c++读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="effective_c++读书笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/effective_c++读书笔记/" class="leancloud_visitors" data-flag-title="effective_c++读书笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="条款1：视C-为一个语言联邦"><a href="#条款1：视C-为一个语言联邦" class="headerlink" title="条款1：视C++为一个语言联邦"></a>条款1：视C++为一个语言联邦</h3><p>C++是一个庞大复杂的语言，它看上去更像是多个语言的联合，所以可以将它分为几个<em>次语言</em>：</p>
+<ul>
+<li>C</li>
+<li>Object-Oriented C++</li>
+<li>Template C++</li>
+<li>STL</li>
+</ul>
+<p>每个部分都有自己的规约，用什么规则取决于用哪部分。</p>
+<h3 id="条款2：尽量以const-enum-inline-替换-define"><a href="#条款2：尽量以const-enum-inline-替换-define" class="headerlink" title="条款2：尽量以const, enum, inline 替换 #define"></a>条款2：尽量以const, enum, inline 替换 #define</h3><p>#define 是在预处理阶段完成的，预处理器只是将define的部分以字符的形式替换掉代码的内容，所以在编译期间是看不到define的东西的，这对于调试很不好。<br>enum申明常量，很有意思。</p>
+<h3 id="条款3：尽可能使用const"><a href="#条款3：尽可能使用const" class="headerlink" title="条款3：尽可能使用const"></a>条款3：尽可能使用const</h3><p>声明类的时候，能用const的地方都尽量加上去。</p>
+<h3 id="条款4：确定对象被使用前已先被初始化"><a href="#条款4：确定对象被使用前已先被初始化" class="headerlink" title="条款4：确定对象被使用前已先被初始化"></a>条款4：确定对象被使用前已先被初始化</h3><p>这条很明显，能避免很多错误。<br>全局对象的初始化，在主函数执行之前。<br>尽量在初始化列表中对所有成员进行初始化。<br>类中的const 和 reference 成员必须在初始化列表中进行初始化。<br>类中成员的初始化顺序就是声明的顺序，和初始化列表的顺序咩有关系。<br>C++中，存在全局区的数据（global, static）的初始化和C有点不一样。non-local（全局，类中）的对象在main函数之前初始化，但不同编译单元之间的顺序无法确定。local（函数内的）的对象在首次遇到该对象的定义式时进行初始化，之后在遇到直接跳过初始化。（通过在对象内存的前后加一个标记来表示）。<br>所以尽量避免使用non-local的全局对象，更好的方式是包装一个函数，使其变成local的，这样能保证它的初始化时间。<br>C中，存在全局区的数据都是在main函数之前初始化的。</p>
+<h3 id="条款5：了解C-默默编写并调用哪些函数"><a href="#条款5：了解C-默默编写并调用哪些函数" class="headerlink" title="条款5：了解C++默默编写并调用哪些函数"></a>条款5：了解C++默默编写并调用哪些函数</h3><p>对象的成员变量是在构造函数执行前完成的，也就是通过初始化列表完成的，在函数体内的只能叫赋值，不是初始化。这也是为什么如果类中存在没有默认构造函数的成员时，一定要在初始化列表中完成初始化，const 成员也是一样的道理，因为 const 成员不能修改，所有在构造函数中赋值是非法的。另外，完成基类的构造也应该在初始化列表中。</p>
+<p>编译器生成的4个默认函数都是 public 且 inline 的，而且只有在这些函数被需要（被调用）它们才会被编译器创建出来。也就是当你没有声明他们，且某个模块又调用了她们的时候。什么叫被需要才创建呢？也就是如果没有地方调用他们，他们是不存在的，只有调用了，才在调用的地方产生一个 inline，这也是为什么是 inline 的原因。</p>
+<p>默认的析构函数是 non-virtual 的，除非这个 class 的 base class 自身申明有 virtual 析构函数，那么它会继承 base 的虚属性。</p>
+<p>编译器并不是什么情况下都会产生默认的函数。特别是 copy assignment ，当类中含有引用成员或const 成员时，编译器拒绝产生 copy assignment。对于构造函数，如果类中的成员或基类没有默认的构造函数，当前类也不会产生默认构造函数。还有一点，对于在基类中被限定为 private 的函数，在派生类中都不会产生默认的对应函数，因为默认函数的要调用基类对应的函数。</p>
+<h3 id="条款6：若不想使用编译器自动生成的函数，就该明确拒绝"><a href="#条款6：若不想使用编译器自动生成的函数，就该明确拒绝" class="headerlink" title="条款6：若不想使用编译器自动生成的函数，就该明确拒绝"></a>条款6：若不想使用编译器自动生成的函数，就该明确拒绝</h3><p>对于 copy constructor 和 copy assignment ，如果不想类被复制，可以将这两个函数声明为 private，且不需要实现，因为有申明就能通过编译，而找到具体的实现，是在链接阶段的事情，如果不调用，就不用去找它。当然，这种方法对于类别调用和 friend 会失效。</p>
+<p>另外，还有一种方法，让当前类继承一个基类，这个基类是空类，只有两个private 的拷贝构造和赋值，这种方法对于内部调用和friend一样有效。因为编译器生成版的函数会调用基类对应的兄弟。</p>
+<h3 id="条款7：为多态基类声明virtual析构函数"><a href="#条款7：为多态基类声明virtual析构函数" class="headerlink" title="条款7：为多态基类声明virtual析构函数"></a>条款7：为多态基类声明virtual析构函数</h3><p>当需要多态时，基类的析构函数必须为 virtual，如果不是，在多态情况下，用基类指针调用析构，调用的是基类的析构，只能释放基类那一部分的数据，派生类那一部分的成员都没有处理。</p>
+<p>另一方面，如果一个类确定不用作多态，那就不要声明 virtual，节约空间。</p>
+<p>纯虚析构也需要实现。其他的纯虚不实现，是因为永远不可能调用到（因为类不能实例化），但是析构会被派生类的析构调用。</p>
+<h3 id="条款8：别让异常逃离析构函数"><a href="#条款8：别让异常逃离析构函数" class="headerlink" title="条款8：别让异常逃离析构函数"></a>条款8：别让异常逃离析构函数</h3><p>从语法上，构造和析构都能抛异常，但析构会有问题，构造不会有问题。</p>
+<p>创建对象分两步：分配内存和调用构造函数。若分配内存出错，默认会抛出bad_alloc异常；若在调用构造函数时抛出异常，会在 new 的过程中清理掉相应的内存。</p>
+<p>析构抛出异常，会导致出错的地方以后的代码无法执行，也就是析构没有执行完，程序会直接跳到对应的异常处理程序的地方。解决的办法是在析构内部解决掉异常，要么终止程序，要么忽略异常。另一个办法是将可能出现异常的部分写成接口，让用户自己来处理，不要放在析构里面做。</p>
+<h3 id="条款9：绝不在构造和析构过程中调用-virtual-函数"><a href="#条款9：绝不在构造和析构过程中调用-virtual-函数" class="headerlink" title="条款9：绝不在构造和析构过程中调用 virtual 函数"></a>条款9：绝不在构造和析构过程中调用 virtual 函数</h3><p>这个问题体现在有继承关系的多态情况下。当一个派生类构造时，是先构造基类的部分，也就是先调用基类的构造函数，此时构造了基类的部分，它是一个基类，而不是派生类，包括虚表指针，所以在构造函数里面的虚函数执行的是基类的函数，而不可能是派生类的。如果是在一般的函数中调用，那么派生类的虚表指针指向的是自己的虚表，所以执行的是自己的函数。<br>同理，析构也是一样的，先析构子类的部分，当到基类时，对象已经变成一个基类，所以只能执行基类的函数。</p>
+<h3 id="条款10：令operator-返回一个reference-to-this"><a href="#条款10：令operator-返回一个reference-to-this" class="headerlink" title="条款10：令operator=返回一个reference to *this"></a>条款10：令operator=返回一个reference to *this</h3><p>这个好理解，为了连续的赋值。（当然，这条也适用于 +=-=*=等带有赋值性质的操作符）<br>另外，连续赋值的执行是从右向左的，赋值表达式的值等于左值。</p>
+<h3 id="条款11：在operator-中处理“自我赋值”"><a href="#条款11：在operator-中处理“自我赋值”" class="headerlink" title="条款11：在operator= 中处理“自我赋值”"></a>条款11：在operator= 中处理“自我赋值”</h3><p>主要是担心自己赋值给自己时，先把自己删除了，导致为定义的行为。</p>
+<p>一个比较安全的写法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; Widget::operator=(const Widget&amp; rhs)</span><br><span class="line">&#123;</span><br><span class="line">	Bitmap* pOrig=pb;	// pb是类 Widget 的一个成员，指向Bitmap的一个指针</span><br><span class="line">	pb=new Bitmap(*rhs.pb); 	// 这个代码就是在删除前，将原来的保存起来，既</span><br><span class="line">	delete pOrig;				// 保证了不会删除自己，也保证了 new 的异常安全</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，合理的写法还有很多，记住不要在赋值之前把自己给删除了。</p>
+<h3 id="条款12：复制对象时勿忘其每一个成分"><a href="#条款12：复制对象时勿忘其每一个成分" class="headerlink" title="条款12：复制对象时勿忘其每一个成分"></a>条款12：复制对象时勿忘其每一个成分</h3><p>写 copy constructor 和 copy assignment 时，确保复制“对象内的所有成员变量”及“所有base class 成员”，调用基类对应的兄弟。</p>
+<p>资源，最常用的就是内存，其他的包括文件描述符，互斥锁，数据库连接，sockets。<br>为保证申请资源后，能合理释放，最好用对象来管理资源。现代C++不应该在代码中显式出现new, delete。</p>
+<hr>
+<h3 id="条款13：以对象管理资源"><a href="#条款13：以对象管理资源" class="headerlink" title="条款13：以对象管理资源"></a>条款13：以对象管理资源</h3><ul>
+<li>获得资源后立即放进管理对象（资源获取即初始化-RAII）</li>
+<li>管理对象运用析构函数确保资源被释放</li>
+</ul>
+<p>C++11提供了三个智能指针，unique_ptr, shared_ptr, weak_ptr。<br>unique只能通过移动语义来转移控制，不能有多个指针指向同一个对象。<br>shared_ptr使用引用计数，在内部通过一个计数类（代理模式）去记录有多少对象指向同一个资源，当计数为0时，删除资源。shared_ptr有一个陷阱：循环引用，自己指向自己。<br>weak_ptr是shared_ptr的一个弱实现，不能增加和减少计数，需要转换成shared_ptr才能用。</p>
+<h3 id="条件14：在资源管理类中小心coping-行为"><a href="#条件14：在资源管理类中小心coping-行为" class="headerlink" title="条件14：在资源管理类中小心coping 行为"></a>条件14：在资源管理类中小心coping 行为</h3><ul>
+<li>复制RAII对象必须一并复制它所管理的资源，所以资源的copying行为决定RAII对象的copying行为。</li>
+<li>普遍而常见的RAII class copying 行为是：抑制copying，施行引用计数。</li>
+</ul>
+<h3 id="条款15：在资源管理类中提供对原始资源的访问"><a href="#条款15：在资源管理类中提供对原始资源的访问" class="headerlink" title="条款15：在资源管理类中提供对原始资源的访问"></a>条款15：在资源管理类中提供对原始资源的访问</h3><p>因为在某些情况下，要使用原始接口，所以只能使用原始资源。</p>
+<h3 id="条款16：成对使用new和delete时要采取相同形式"><a href="#条款16：成对使用new和delete时要采取相同形式" class="headerlink" title="条款16：成对使用new和delete时要采取相同形式"></a>条款16：成对使用new和delete时要采取相同形式</h3><p>删除数组和单一数据时要统一</p>
+<h3 id="条款17：以独立语句将newed对象置入智能指针"><a href="#条款17：以独立语句将newed对象置入智能指针" class="headerlink" title="条款17：以独立语句将newed对象置入智能指针"></a>条款17：以独立语句将newed对象置入智能指针</h3><p>以独立语句将newed对象存储于智能指针内。如果不这样做，一旦异常抛出，有可能导致难以察觉的资源泄漏。</p>
+<p>让接口容易被正确使用，不容易被误用。</p>
+<h3 id="条款18：让接口容易被正确使用，不容易被误用"><a href="#条款18：让接口容易被正确使用，不容易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不容易被误用"></a>条款18：让接口容易被正确使用，不容易被误用</h3><p>促进正确使用的办法包括接口的一致性，以及与内置类型的行为兼容。<br>阻止误用的办法包括建立新类型、限制类型上的操作，束缚对象值，以及消除客户的资源管理责任。</p>
+<p>这部分没实际经验没办法理解。</p>
+<h3 id="条款19：设计Class犹如设计type"><a href="#条款19：设计Class犹如设计type" class="headerlink" title="条款19：设计Class犹如设计type"></a>条款19：设计Class犹如设计type</h3><p>无法理解</p>
+<h3 id="条款20：宁以pass-by-reference-to-const替换pass-by-value"><a href="#条款20：宁以pass-by-reference-to-const替换pass-by-value" class="headerlink" title="条款20：宁以pass-by-reference-to-const替换pass-by-value"></a>条款20：宁以pass-by-reference-to-const替换pass-by-value</h3><p>引用的底层实现是指针。</p>
+<p>用传引用替代传值，可以省去复制产生的开销，以及切割问题。<br>切割，就是传值的时候，将一个实参的派生类传给一个基类的形参，其实是用一个派生类构造了一个基类，在函数中得到的是一个基类，不会出现多态的效果（虚表指针是不在复制范围内的）。<br>示例：<br>错误的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Window &#123;</span><br><span class="line">public:</span><br><span class="line">	std::string name() const;</span><br><span class="line">	virtual void display() const;</span><br><span class="line">&#125;;</span><br><span class="line">class WindowWithScrollBars: public Window &#123;</span><br><span class="line">public:</span><br><span class="line">	virtual void display() const;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void printNameAndDisplay(Window w)</span><br><span class="line">&#123;</span><br><span class="line">	std::cout&lt;&lt;w.name();</span><br><span class="line">	w.display();                  //这里调用的是基类的函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>正确的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void printNameAndDisplay(const Window&amp; w)</span><br><span class="line">&#123;</span><br><span class="line">	std::cout&lt;&lt;w.name();</span><br><span class="line">	w.display();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于内置类型，STL的迭代器和函数对象，传值更好。</p>
+<h3 id="条款21：必须返回对象时，别妄想返回其reference"><a href="#条款21：必须返回对象时，别妄想返回其reference" class="headerlink" title="条款21：必须返回对象时，别妄想返回其reference"></a>条款21：必须返回对象时，别妄想返回其reference</h3><p>绝不要返回pointer或reference指向一个local stack对象（函数返回时就被析构），或返回reference指向一个heap-allocated对象（一旦没有用变量接这个引用，就会造成内存泄漏），或返回pointer或reference指向一个local static对象而有可能同时需要多个这样的对象（对个对象是同一个对象）。</p>
+<h3 id="条款22：将成员变量声明为private"><a href="#条款22：将成员变量声明为private" class="headerlink" title="条款22：将成员变量声明为private"></a>条款22：将成员变量声明为private</h3><p>protected和public的封装性一样差。<br>封装性与改变一个属性需要改变的代码量成反比。</p>
+<h3 id="条款23：宁用non-member-non-friend函数替换member函数"><a href="#条款23：宁用non-member-non-friend函数替换member函数" class="headerlink" title="条款23：宁用non-member non-friend函数替换member函数"></a>条款23：宁用non-member non-friend函数替换member函数</h3><p>提高封装性，使性能单一。<br>个人认为，一个类如何设计接口，很多时候是凭一个程序员的直觉，真没有固定的定律。</p>
+<h3 id="条款24：若所有参数皆需类型转换，请为此采用non-member函数"><a href="#条款24：若所有参数皆需类型转换，请为此采用non-member函数" class="headerlink" title="条款24：若所有参数皆需类型转换，请为此采用non-member函数"></a>条款24：若所有参数皆需类型转换，请为此采用non-member函数</h3><p>如果你需要为某个函数的所有参数（包括被this指针所指的那个隐喻参数）进行类型转换，那么这个函数必须是个non-member。<br>考虑运算符重载。</p>
+<h3 id="条款25：考虑写出一个不抛异常的swap函数"><a href="#条款25：考虑写出一个不抛异常的swap函数" class="headerlink" title="条款25：考虑写出一个不抛异常的swap函数"></a>条款25：考虑写出一个不抛异常的swap函数</h3><p>没看懂。</p>
+<h3 id="条款26：尽可能延后变量定义式的出现时间"><a href="#条款26：尽可能延后变量定义式的出现时间" class="headerlink" title="条款26：尽可能延后变量定义式的出现时间"></a>条款26：尽可能延后变量定义式的出现时间</h3><p>直到要用的时候再定义，减少不必要的构造和析构。循环内的定义尽量写在循环内。</p>
+<h3 id="条款27：尽量少做转型动作"><a href="#条款27：尽量少做转型动作" class="headerlink" title="条款27：尽量少做转型动作"></a>条款27：尽量少做转型动作</h3><p>C++ 的四种转型：</p>
+<ul>
+<li><p>const_cast：通常被用来将对象的常量性转除。它也是唯一有此能力的C++-style转型操作符。<br>主要用于去掉 const，volatile</p>
+</li>
+<li><p>dynamic_cast：主要用来执行“安全向下转型”，也就是用来决定某对象是否归属继承体系中的某个类型。它是唯一无法由旧式语法执行的动作，也是唯一可能耗费重大运行成本的转型动作。<br>主要用于多态下的基类转向派生类，运行时进行类型检查</p>
+</li>
+<li><p>reinterpret_cast：意图执行低级转型，实际动作（及结果）可能取决于编译器，这也就表示它不可移植。例如将一个pointer to int 转型为一个int 。<br>二进制层面的转换，就是将二进制重新解释。</p>
+</li>
+<li><p>static_cast：用来强迫隐式转换，例如将non-const对象转为const对象，或将int 转为double等等。它也可以用来执行上述多种转换的反向转换，例如将void* 指针转为typed指针，将pointer-to-base 转为pointer-to-derived。<br>功能类似于C 风格的转换，在兼容类型直接，不进行运行检查。</p>
+</li>
+</ul>
+<p>类型转换的时候会产生一些额外代码。特别是多态时，有多继承的时候，子类指针转成父类的时候，会有一个偏移。</p>
+<p>尽量避免使用dynamic，效率太低。</p>
+<ul>
+<li>如果可以，尽量避免转型，特别是在注重效率的代码中避免dynamic_cast。</li>
+<li>如果转型是必要的，试着将它隐藏于某个函数背后。客户随后可以调用该函数，而不需要将转型放进他们自己的代码内。</li>
+</ul>
+<h3 id="条款28：避免返回handles指向对象内部成分"><a href="#条款28：避免返回handles指向对象内部成分" class="headerlink" title="条款28：避免返回handles指向对象内部成分"></a>条款28：避免返回handles指向对象内部成分</h3><p>避免返回handles（包括references、指针、迭代器）指向对象内部。遵守这个条款可增加封装性，帮助const成员函数的行为像个const。</p>
+<h3 id="条款29：为“异常安全”而努力是值得的"><a href="#条款29：为“异常安全”而努力是值得的" class="headerlink" title="条款29：为“异常安全”而努力是值得的"></a>条款29：为“异常安全”而努力是值得的</h3><p>异常安全，<br>使用对象来管理资源<br>copy-and-swap</p>
+<h3 id="条款30：透彻了解inlining的里里外外"><a href="#条款30：透彻了解inlining的里里外外" class="headerlink" title="条款30：透彻了解inlining的里里外外"></a>条款30：透彻了解inlining的里里外外</h3><p>inline 可能会导致代码膨胀<br>inline不是强制命令，只是对编译器的申请<br>将函数定义在class内，就是隐式的申请为inline，这里friend也有同样的效果<br>inline函数通常一定要被置于头文件内，因为在编译过程要替换。<br>template通常也被置于头文件内，因为一旦被使用，编译器为了将它具现，需要知道它张什么样子<br>编译器会拒绝几种情况下的inline申请：函数内带有循环和递归、virtual函数（因为在运行期才能确定调用那个函数）<br>当你对一个已经inline的函数取地址时，编译器还会生成一个非inline的函数<br>为了C++的安全，编译器会在构造和析构里面加入很多代码，取决于具体的类，所以将构造申明为inline可能不是一个好的选择。<br>inline的缺点：增加代码量，无法调试，修改就需要重新编译整个项目</p>
+<h3 id="条款31：将文件间的编译依存关系降至最低"><a href="#条款31：将文件间的编译依存关系降至最低" class="headerlink" title="条款31：将文件间的编译依存关系降至最低"></a>条款31：将文件间的编译依存关系降至最低</h3><p>支持“编译依存性最小化”的一般构想是：相依于声明式，不要相依于定义式。基于此构想的两个手段是Handle classes和Interface classes<br>尽量用声明，而不是定义。</p>
+<h3 id="条款32：确定你的public继承塑模出is-a关系"><a href="#条款32：确定你的public继承塑模出is-a关系" class="headerlink" title="条款32：确定你的public继承塑模出is-a关系"></a>条款32：确定你的public继承塑模出is-a关系</h3><p><strong>以C++进行面向对象编程，最重要的一个规则是：public inheritance（公开继承）意味”is-a”（是一种）的关系。</strong></p>
+<p>“public继承”意味is-a。适用于base classes身上的每一件事情一定也适用于derived clases身上，因为每一个derived class对象也都是一个base class对象。</p>
+<h3 id="条款33：避免遮掩继承而来的名称"><a href="#条款33：避免遮掩继承而来的名称" class="headerlink" title="条款33：避免遮掩继承而来的名称"></a>条款33：避免遮掩继承而来的名称</h3><ul>
+<li>derived classes内的名称会遮掩base classes内的名称。在public继承下从来没有人希望如此。</li>
+<li>为了让被遮掩的名称再见天日，可使用using声明式或转交函数。</li>
+</ul>
+<p>C++的名称查找规则是从局部一层层往外找的。如果在派生类中有和基类同名的函数，那么会遮掩基类中所有这个名字函数的重载，无关参数，无关类型，无关virtual，只在名称在查找。<br>要想调用基类的函数，必须显式调用。</p>
+<h3 id="条款34：区分接口继承和实现继承"><a href="#条款34：区分接口继承和实现继承" class="headerlink" title="条款34：区分接口继承和实现继承"></a>条款34：区分接口继承和实现继承</h3><p>pure函数也可以提供定义，在派生类中被调用。其意义在于提供接口，同时提供一个默认实现。<br>pure virtual函数的继承只是继承了接口，在派生类中要实现，但是实现可以调用基类提供的默认实现（Base::virtualFun()）。这点不同于virtual函数，virtual函数提供了接口，也提供了默认实现，允许派生类重写实现。<br>non-virtual的函数提供了一份强制实现，在派生类中不应该重写non-virtual函数。它表示所有派生类都支持的相同的实现。</p>
+<h3 id="条款35：考虑virtual函数以外的其他选择"><a href="#条款35：考虑virtual函数以外的其他选择" class="headerlink" title="条款35：考虑virtual函数以外的其他选择"></a>条款35：考虑virtual函数以外的其他选择</h3><p>当你为解决问题而寻找某个设计方法时，不妨考虑virtual函数的替代方案：</p>
+<ul>
+<li><p>使用non-virtual interface(NVI)手法，那是Template Method设计模式的一种特殊形式。它以public non-virutal成员函数包裹较低访问性的virtual函数。</p>
+</li>
+<li><p>将virutal函数替换为“函数指针成员变量”，这是Strategy设计模式的一种分解表现形式。</p>
+</li>
+<li><p>以std::function成员变量替换virtual函数，因而允许使用任何可调用物（callable entity）搭配一个兼容于需求的签名式。这也是Strategy设计模式的某种形式。</p>
+</li>
+<li><p>将继承体系内的virtual函数替换为另一个继承体系内的virtual函数。这是Straregy设计模式的传统实现手法。</p>
+</li>
+</ul>
+<h3 id="条款36：绝不重新定义继承而来的non-virtual函数"><a href="#条款36：绝不重新定义继承而来的non-virtual函数" class="headerlink" title="条款36：绝不重新定义继承而来的non-virtual函数"></a>条款36：绝不重新定义继承而来的non-virtual函数</h3><p>如题，真理。</p>
+<h3 id="条款37：绝不重新定义继承而来的缺省参数值"><a href="#条款37：绝不重新定义继承而来的缺省参数值" class="headerlink" title="条款37：绝不重新定义继承而来的缺省参数值"></a>条款37：绝不重新定义继承而来的缺省参数值</h3><p>绝对不要重新定义一个继承而来的缺省参数值，因为缺省参数值都是静态绑定，而virtual函数–你唯一应该覆写的东西–却是动态绑定。<br>不懂没关系，真用到的时候在回头看书。</p>
+<h3 id="条款38：通过复合塑模出has-a或“根据某物实现出”"><a href="#条款38：通过复合塑模出has-a或“根据某物实现出”" class="headerlink" title="条款38：通过复合塑模出has-a或“根据某物实现出”"></a>条款38：通过复合塑模出has-a或“根据某物实现出”</h3><ul>
+<li>复合的意义和public继承完全不同</li>
+<li>在应用域，复合意味has-a。在实现域，复合意味is-implemented-in-terms-of。</li>
+</ul>
+<p>在一个类中包含另一个类。</p>
+<h3 id="条款39：明智而审慎地使用private继承"><a href="#条款39：明智而审慎地使用private继承" class="headerlink" title="条款39：明智而审慎地使用private继承"></a>条款39：明智而审慎地使用private继承</h3><ul>
+<li>private继承意味is-implemented-in-terms of。它通常比符合的级别低。但是当derived class 需要访问protected base class的成员，或需要重新定义继承而来的virtual函数时，这么设计是合理的。</li>
+<li>和复合不同，private继承可以造成empty base 最优化。这对致力于”对象尺寸最小化“的程序库开发者而言，可能很重要。</li>
+</ul>
+<p>private继承，编译器不会将派生类转为基类。<br>所有基类成员都变成private。</p>
+<h3 id="条款40：明智而审慎地使用多重继承"><a href="#条款40：明智而审慎地使用多重继承" class="headerlink" title="条款40：明智而审慎地使用多重继承"></a>条款40：明智而审慎地使用多重继承</h3><ul>
+<li>多重继承比单一继承复杂。它可能导致新的歧义性，以及对virtual继承的需要。</li>
+<li>virtual继承会增加大小、速度、初始化（及赋值）复杂度等成本。如果virutal base classes不带任何数据，将是最具有实现价值的情况（类似Java中的接口继承）。</li>
+<li>多重继承的确有正当用途。其中一个情节涉及”public继承某个Interface class“和”private继承某个协助实现的class“的两相组合。</li>
+</ul>
+<h3 id="条款41：了解隐式接口和编译器多态"><a href="#条款41：了解隐式接口和编译器多态" class="headerlink" title="条款41：了解隐式接口和编译器多态"></a>条款41：了解隐式接口和编译器多态</h3><p>模板没有具现化以前，并不知道具体的实现是什么。直到编译的时候才能确定。<br>所以这是一种多态。</p>
+<h3 id="条款42：了解typename-的双重意义"><a href="#条款42：了解typename-的双重意义" class="headerlink" title="条款42：了解typename 的双重意义"></a>条款42：了解typename 的双重意义</h3><p>有嵌套类型名称的时候用。</p>
+<h3 id="条款43：学习处理模板化基类的名称"><a href="#条款43：学习处理模板化基类的名称" class="headerlink" title="条款43：学习处理模板化基类的名称"></a>条款43：学习处理模板化基类的名称</h3><p>在derived class template内通过“this-&gt;”指涉base class template内的成员名称，或借由一个明白写出的”base class资格修饰符”完成。<br>基类有可能特化，所以不一定提供统一的接口，所以派生类中不能直接用基类的接口。</p>
+<h3 id="条款44：将与参数无关的代码抽离template"><a href="#条款44：将与参数无关的代码抽离template" class="headerlink" title="条款44：将与参数无关的代码抽离template"></a>条款44：将与参数无关的代码抽离template</h3><p>不懂</p>
+<h3 id="条款45："><a href="#条款45：" class="headerlink" title="条款45："></a>条款45：</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>平时我们申请堆内存用的 new 和 delete 是 C++ 的操作符。</p>
+<p>new 会被编译器翻译成两部部分：申请内存和构造对象。delete也是两部分：析构和回收内存。</p>
+<p>申请内存的函数是 <em>::operator new(size_t size)</em>，operator new 会申请 size 大小的内存，如果申请不成功，会抛出异常，异常处理程序会 调用一个 new_handler的函数来处理（反复调用），直到没法再申请了会抛出一个 bad_alloc异常。</p>
+<h3 id="条款49：了解new-handler的行为"><a href="#条款49：了解new-handler的行为" class="headerlink" title="条款49：了解new-handler的行为"></a>条款49：了解new-handler的行为</h3><p>在 &lt;new> 中有如下声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace std &#123;</span><br><span class="line">	typedef void (*new_handler) ();</span><br><span class="line">	new_handler set_new_handler (new_handler P) throw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>new_handler是一个函数指针，下面的函数是设置 operator new 分配失败时要调用的函数。</p>
+<p>一个类可以设计它自己的 new_handler。<br>就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class QQQ &#123;</span><br><span class="line">  private:</span><br><span class="line">    class NewHandlerHolder &#123;</span><br><span class="line">      public:</span><br><span class="line">        explicit NewHandlerHolder(new_handler nh) : handler(nh) &#123;&#125;</span><br><span class="line">        ~NewHandlerHolder() &#123;</span><br><span class="line">          set_new_handler(handler);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      private:</span><br><span class="line">        new_handler handler;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  public:</span><br><span class="line">    QQQ ()&#123;</span><br><span class="line">      cout&lt;&lt;&quot;I am constructor\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static std::new_handler set_new_handler(std::new_handler p) throw() &#123;</span><br><span class="line">      new_handler oldHandler=currentHandler;</span><br><span class="line">      currentHandler=p;</span><br><span class="line">      return oldHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static void* operator new(size_t size) throw(std::bad_alloc) &#123;</span><br><span class="line">      NewHandlerHolder h(std::set_new_handler(currentHandler));</span><br><span class="line">      cout&lt;&lt;&quot;This is my new\n&quot;;</span><br><span class="line">      return ::operator new(size);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  private:</span><br><span class="line">    static std::new_handler currentHandler;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">std::new_handler QQQ::currentHandler=nullptr;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void outMem() &#123;</span><br><span class="line">  cout&lt;&lt;&quot;Memory out of limit\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  QQQ::set_new_handler(outMem);</span><br><span class="line">  QQQ* qqq=new QQQ;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>书中的那个代码写得更健壮一些。<br>从代码中可以看出，当类中有 operator new 的时候，编译器就不会去用全局的那个 operator new 了。<br>据说 operator new 还可以重载，只要返回值和第一个参数不变就行。</p>
+<p><strong>书中那个模板继承的方式没看懂</strong></p>
+<h3 id="条款50：了解new-和delete-的合理替换时机"><a href="#条款50：了解new-和delete-的合理替换时机" class="headerlink" title="条款50：了解new 和delete 的合理替换时机"></a>条款50：了解new 和delete 的合理替换时机</h3><p>很多时候需要定制程序的new和delete，这里指的应该是 operator new 和 operator delete，因为C++ 规定 new 和 delete 的行为是不能改变的。<br>定制的理由很多，编译器自带的版本因为是一个通用的版本，所以在很多方面性能不佳，具体看书上。</p>
+<h3 id="条款51：编写new-和-delete-时需固守常规"><a href="#条款51：编写new-和-delete-时需固守常规" class="headerlink" title="条款51：编写new 和 delete 时需固守常规"></a>条款51：编写new 和 delete 时需固守常规</h3><p>写 operator new 和 operator delete 是有一定规定的（C++规定）<br>operator new 是内含一个无穷循环，分配内存，如果内存不足，调用 new-handler。它也应该有能力处理 0 bytes 的申请。<br>class专属版本的申请还要考虑有继承的情况，因为往往派生类的对象比基类的对象大。数组的情况也有一些特别的地方，比如要用一定的空间来保持数组大小。</p>
+<p>operator delete 应该在收到null指针时不做任何事情。</p>
+<h3 id="条款52：写了placement-new-也要写placement-delete"><a href="#条款52：写了placement-new-也要写placement-delete" class="headerlink" title="条款52：写了placement new 也要写placement delete"></a>条款52：写了placement new 也要写placement delete</h3><p>new 分为两部分，一部分申请空间，一部分构造。<br>在申请空间阶段抛出异常的情况之前说了，那么在构造阶段抛出异常会如何。此时，空间已经申请了，抛出异常，C++的运行环境会去调用和operator new 匹配的operator delete 释放那部分空间。</p>
+<p>之所以对应的，是因为operator new 和 operator deete 都可以有多个版本。</p>
+<p>正常版本（也就是编译器提供的全局版本）是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void* operator new (std::size_t ) throw (std::bad_alloc);</span><br><span class="line">void* operator delete(void* rawMemory) throw();</span><br><span class="line"></span><br><span class="line">除此之外，可以自己实现其他版本，带有其他参数，这样的版本称为 placement new 和 placement delete。</span><br><span class="line">在new 的时候要加上其他参数。</span><br><span class="line">&lt;new\&gt; 中已经实现了三个:</span><br></pre></td></tr></table></figure></p>
+<p>void<em> operaotor new(std::size_t) throw(std::bad_alloc);<br>void</em> operator new(std::size,void<em>) throw();<br>void</em> operaotr new(std::size_t, const std::nothrow_t&amp;) throw();<br>~~~<br>第一个是正常的；第二个是平常一般说的的placement new ，接受一个指针，在指针的地方构造；第三个是兼容老的程序的版本。</p>
+<p>声明了一个placement new 就必须要申明一个对应参数的placement delete。因为在发生异常的时候会去找它，找不到就会内存泄漏。但是你自己显式delete的时候，调用的还是正常的那个。</p>
+<p>在class中的声明的会覆盖全局的，只要有一个，它就只会来找累里定义的，不会去找全局的。</p>
+<h3 id="条款53：不要轻忽编译器的警告"><a href="#条款53：不要轻忽编译器的警告" class="headerlink" title="条款53：不要轻忽编译器的警告"></a>条款53：不要轻忽编译器的警告</h3><ul>
+<li>严肃对待编译器发出的警告信息。努力在你的编译器的最高（最严苛）警告级别下争取“无任何警告”的荣誉。</li>
+<li>不要过度依赖编译器的报警能力，因为不同的编译器对待事情的态度并不相同。一旦移植到另一个编译器上，你原本依赖的警告信息有可能消失。</li>
+</ul>
+<h3 id="条款54：让自己熟悉包括TR1在内的标准程序库"><a href="#条款54：让自己熟悉包括TR1在内的标准程序库" class="headerlink" title="条款54：让自己熟悉包括TR1在内的标准程序库"></a>条款54：让自己熟悉包括TR1在内的标准程序库</h3><p>直接看c++11的文档更好。</p>
+<h3 id="条款55：让自己熟悉Boost"><a href="#条款55：让自己熟悉Boost" class="headerlink" title="条款55：让自己熟悉Boost"></a>条款55：让自己熟悉Boost</h3><p>boost</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode部分解题思路/" rel="next" title="leetcode部分解题思路">
+                <i class="fa fa-chevron-left"></i> leetcode部分解题思路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/CSAPP读书笔记/" rel="prev" title="CSAPP读书笔记">
+                CSAPP读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="SkyBlues">
+          <p class="site-author-name" itemprop="name">SkyBlues</p>
+           
+              <p class="site-description motion-element" itemprop="description">Good Good Study Day Day Up</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款1：视C-为一个语言联邦"><span class="nav-number">1.</span> <span class="nav-text">条款1：视C++为一个语言联邦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款2：尽量以const-enum-inline-替换-define"><span class="nav-number">2.</span> <span class="nav-text">条款2：尽量以const, enum, inline 替换 #define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款3：尽可能使用const"><span class="nav-number">3.</span> <span class="nav-text">条款3：尽可能使用const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款4：确定对象被使用前已先被初始化"><span class="nav-number">4.</span> <span class="nav-text">条款4：确定对象被使用前已先被初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款5：了解C-默默编写并调用哪些函数"><span class="nav-number">5.</span> <span class="nav-text">条款5：了解C++默默编写并调用哪些函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款6：若不想使用编译器自动生成的函数，就该明确拒绝"><span class="nav-number">6.</span> <span class="nav-text">条款6：若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款7：为多态基类声明virtual析构函数"><span class="nav-number">7.</span> <span class="nav-text">条款7：为多态基类声明virtual析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款8：别让异常逃离析构函数"><span class="nav-number">8.</span> <span class="nav-text">条款8：别让异常逃离析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款9：绝不在构造和析构过程中调用-virtual-函数"><span class="nav-number">9.</span> <span class="nav-text">条款9：绝不在构造和析构过程中调用 virtual 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款10：令operator-返回一个reference-to-this"><span class="nav-number">10.</span> <span class="nav-text">条款10：令operator=返回一个reference to *this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款11：在operator-中处理“自我赋值”"><span class="nav-number">11.</span> <span class="nav-text">条款11：在operator= 中处理“自我赋值”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款12：复制对象时勿忘其每一个成分"><span class="nav-number">12.</span> <span class="nav-text">条款12：复制对象时勿忘其每一个成分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款13：以对象管理资源"><span class="nav-number">13.</span> <span class="nav-text">条款13：以对象管理资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件14：在资源管理类中小心coping-行为"><span class="nav-number">14.</span> <span class="nav-text">条件14：在资源管理类中小心coping 行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款15：在资源管理类中提供对原始资源的访问"><span class="nav-number">15.</span> <span class="nav-text">条款15：在资源管理类中提供对原始资源的访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款16：成对使用new和delete时要采取相同形式"><span class="nav-number">16.</span> <span class="nav-text">条款16：成对使用new和delete时要采取相同形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款17：以独立语句将newed对象置入智能指针"><span class="nav-number">17.</span> <span class="nav-text">条款17：以独立语句将newed对象置入智能指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款18：让接口容易被正确使用，不容易被误用"><span class="nav-number">18.</span> <span class="nav-text">条款18：让接口容易被正确使用，不容易被误用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款19：设计Class犹如设计type"><span class="nav-number">19.</span> <span class="nav-text">条款19：设计Class犹如设计type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款20：宁以pass-by-reference-to-const替换pass-by-value"><span class="nav-number">20.</span> <span class="nav-text">条款20：宁以pass-by-reference-to-const替换pass-by-value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款21：必须返回对象时，别妄想返回其reference"><span class="nav-number">21.</span> <span class="nav-text">条款21：必须返回对象时，别妄想返回其reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款22：将成员变量声明为private"><span class="nav-number">22.</span> <span class="nav-text">条款22：将成员变量声明为private</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款23：宁用non-member-non-friend函数替换member函数"><span class="nav-number">23.</span> <span class="nav-text">条款23：宁用non-member non-friend函数替换member函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款24：若所有参数皆需类型转换，请为此采用non-member函数"><span class="nav-number">24.</span> <span class="nav-text">条款24：若所有参数皆需类型转换，请为此采用non-member函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款25：考虑写出一个不抛异常的swap函数"><span class="nav-number">25.</span> <span class="nav-text">条款25：考虑写出一个不抛异常的swap函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款26：尽可能延后变量定义式的出现时间"><span class="nav-number">26.</span> <span class="nav-text">条款26：尽可能延后变量定义式的出现时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款27：尽量少做转型动作"><span class="nav-number">27.</span> <span class="nav-text">条款27：尽量少做转型动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款28：避免返回handles指向对象内部成分"><span class="nav-number">28.</span> <span class="nav-text">条款28：避免返回handles指向对象内部成分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款29：为“异常安全”而努力是值得的"><span class="nav-number">29.</span> <span class="nav-text">条款29：为“异常安全”而努力是值得的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款30：透彻了解inlining的里里外外"><span class="nav-number">30.</span> <span class="nav-text">条款30：透彻了解inlining的里里外外</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款31：将文件间的编译依存关系降至最低"><span class="nav-number">31.</span> <span class="nav-text">条款31：将文件间的编译依存关系降至最低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款32：确定你的public继承塑模出is-a关系"><span class="nav-number">32.</span> <span class="nav-text">条款32：确定你的public继承塑模出is-a关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款33：避免遮掩继承而来的名称"><span class="nav-number">33.</span> <span class="nav-text">条款33：避免遮掩继承而来的名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款34：区分接口继承和实现继承"><span class="nav-number">34.</span> <span class="nav-text">条款34：区分接口继承和实现继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款35：考虑virtual函数以外的其他选择"><span class="nav-number">35.</span> <span class="nav-text">条款35：考虑virtual函数以外的其他选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款36：绝不重新定义继承而来的non-virtual函数"><span class="nav-number">36.</span> <span class="nav-text">条款36：绝不重新定义继承而来的non-virtual函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款37：绝不重新定义继承而来的缺省参数值"><span class="nav-number">37.</span> <span class="nav-text">条款37：绝不重新定义继承而来的缺省参数值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款38：通过复合塑模出has-a或“根据某物实现出”"><span class="nav-number">38.</span> <span class="nav-text">条款38：通过复合塑模出has-a或“根据某物实现出”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款39：明智而审慎地使用private继承"><span class="nav-number">39.</span> <span class="nav-text">条款39：明智而审慎地使用private继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款40：明智而审慎地使用多重继承"><span class="nav-number">40.</span> <span class="nav-text">条款40：明智而审慎地使用多重继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款41：了解隐式接口和编译器多态"><span class="nav-number">41.</span> <span class="nav-text">条款41：了解隐式接口和编译器多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款42：了解typename-的双重意义"><span class="nav-number">42.</span> <span class="nav-text">条款42：了解typename 的双重意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款43：学习处理模板化基类的名称"><span class="nav-number">43.</span> <span class="nav-text">条款43：学习处理模板化基类的名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款44：将与参数无关的代码抽离template"><span class="nav-number">44.</span> <span class="nav-text">条款44：将与参数无关的代码抽离template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款45："><span class="nav-number">45.</span> <span class="nav-text">条款45：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">46.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款49：了解new-handler的行为"><span class="nav-number">47.</span> <span class="nav-text">条款49：了解new-handler的行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款50：了解new-和delete-的合理替换时机"><span class="nav-number">48.</span> <span class="nav-text">条款50：了解new 和delete 的合理替换时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款51：编写new-和-delete-时需固守常规"><span class="nav-number">49.</span> <span class="nav-text">条款51：编写new 和 delete 时需固守常规</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款52：写了placement-new-也要写placement-delete"><span class="nav-number">50.</span> <span class="nav-text">条款52：写了placement new 也要写placement delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款53：不要轻忽编译器的警告"><span class="nav-number">51.</span> <span class="nav-text">条款53：不要轻忽编译器的警告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款54：让自己熟悉包括TR1在内的标准程序库"><span class="nav-number">52.</span> <span class="nav-text">条款54：让自己熟悉包括TR1在内的标准程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款55：让自己熟悉Boost"><span class="nav-number">53.</span> <span class="nav-text">条款55：让自己熟悉Boost</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SkyBlues</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://skyblues-notes.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.skybluues.com/effective_c++读书笔记/';
+          this.page.identifier = 'effective_c++读书笔记/';
+          this.page.title = 'effective_c++读书笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://skyblues-notes.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WAglmhFLtdNGkNwm4VbihXur-gzGzoHsz", "JJJi6tqpNhS9gCRDluWUF7Kv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
