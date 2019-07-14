@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="makefile,">
+  <meta name="keywords" content="essay">
 
 
 
@@ -93,18 +93,17 @@
 
 
 
-<meta name="description" content="make概述make的基本模型如下：12targets: objects    commands 简单的说就是我们要有一个目标 target（也可以是多个），生成这个目标需要依赖于多个对象 object，生成这个目标的方法就是 command。这里的object也可以有自己的依赖，这样层层递归，直到最底层，make会根据这个递归关系层层查找，然后从最底层的目标开始生成，然后层层往上生成最上层的目标">
-<meta name="keywords" content="makefile">
+<meta name="description" content="何为LibraFacebook在Libra白皮书中明确提到：Libra的使命是建立一套简单的、无国界的货币和为数十亿人服务的金融基础设施。这样的定位不可谓不宏大。互联网的发展提高了信息传输的效率，降低了信息交互的成本。Facebook希望通过区块链技术，实现全球各个国家之间低成本高效率的交易支付，进一步提供普惠金融服务。 为什么做加密货币Facebook从2016年开始研究区块链，组建区块链团队">
 <meta property="og:type" content="article">
-<meta property="og:title" content="makefile笔记">
-<meta property="og:url" content="http://www.skybluues.com/makefile笔记/index.html">
+<meta property="og:title" content="Libra分析">
+<meta property="og:url" content="http://www.skybluues.com/Libra分析/index.html">
 <meta property="og:site_name" content="SkyBlues Notes">
-<meta property="og:description" content="make概述make的基本模型如下：12targets: objects    commands 简单的说就是我们要有一个目标 target（也可以是多个），生成这个目标需要依赖于多个对象 object，生成这个目标的方法就是 command。这里的object也可以有自己的依赖，这样层层递归，直到最底层，make会根据这个递归关系层层查找，然后从最底层的目标开始生成，然后层层往上生成最上层的目标">
+<meta property="og:description" content="何为LibraFacebook在Libra白皮书中明确提到：Libra的使命是建立一套简单的、无国界的货币和为数十亿人服务的金融基础设施。这样的定位不可谓不宏大。互联网的发展提高了信息传输的效率，降低了信息交互的成本。Facebook希望通过区块链技术，实现全球各个国家之间低成本高效率的交易支付，进一步提供普惠金融服务。 为什么做加密货币Facebook从2016年开始研究区块链，组建区块链团队">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-06-19T14:05:54.662Z">
+<meta property="og:updated_time" content="2019-07-14T12:48:08.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="makefile笔记">
-<meta name="twitter:description" content="make概述make的基本模型如下：12targets: objects    commands 简单的说就是我们要有一个目标 target（也可以是多个），生成这个目标需要依赖于多个对象 object，生成这个目标的方法就是 command。这里的object也可以有自己的依赖，这样层层递归，直到最底层，make会根据这个递归关系层层查找，然后从最底层的目标开始生成，然后层层往上生成最上层的目标">
+<meta name="twitter:title" content="Libra分析">
+<meta name="twitter:description" content="何为LibraFacebook在Libra白皮书中明确提到：Libra的使命是建立一套简单的、无国界的货币和为数十亿人服务的金融基础设施。这样的定位不可谓不宏大。互联网的发展提高了信息传输的效率，降低了信息交互的成本。Facebook希望通过区块链技术，实现全球各个国家之间低成本高效率的交易支付，进一步提供普惠金融服务。 为什么做加密货币Facebook从2016年开始研究区块链，组建区块链团队">
 
 
 
@@ -132,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://www.skybluues.com/makefile笔记/">
+  <link rel="canonical" href="http://www.skybluues.com/Libra分析/">
 
 
 
 
 
-  <title>makefile笔记 | SkyBlues Notes</title>
+  <title>Libra分析 | SkyBlues Notes</title>
   
 
 
@@ -318,7 +317,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/makefile笔记/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Libra分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -335,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">makefile笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Libra分析</h1>
         
 
         <div class="post-meta">
@@ -347,8 +346,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T00:00:00+08:00">
-                2019-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-14T21:54:47+08:00">
+                2019-07-14
               </time>
             
 
@@ -358,28 +357,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -388,8 +365,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/makefile笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="makefile笔记/" itemprop="commentCount"></span>
+                <a href="/Libra分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Libra分析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,7 +374,7 @@
 
           
           
-             <span id="/makefile笔记/" class="leancloud_visitors" data-flag-title="makefile笔记">
+             <span id="/Libra分析/" class="leancloud_visitors" data-flag-title="Libra分析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -425,55 +402,21 @@
       
 
       
-        <h3 id="make概述"><a href="#make概述" class="headerlink" title="make概述"></a>make概述</h3><p>make的基本模型如下：<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">targets: objects</span></span><br><span class="line">    commands</span><br></pre></td></tr></table></figure></p>
-<p>简单的说就是我们要有一个目标 <em>target</em>（也可以是多个），生成这个目标需要依赖于多个对象 <em>object</em>，生成这个目标的方法就是 <em>command</em>。这里的<em>object</em>也可以有自己的依赖，这样层层递归，直到最底层，make会根据这个递归关系层层查找，然后从最底层的目标开始生成，然后层层往上生成最上层的目标（终极目标）。make会检测这些目标所依赖的对象是否被改动过，如果被改动，就运行命令<em>command</em>重新生成<em>target</em>。make其他的操作都是在这样的模式下进行的。make不限于做代码编译，凡是符合上面的模式的工作都可以做。</p>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
-<li><p><strong>@:</strong> makefile中可以添加shell命名，如果在shell命令之前加上 <em>@</em> ，会让make不输出这条命令，只输出命令执行的结果。</p>
-</li>
-<li><p><strong>cut:</strong> shell 命令 cut，通过参数设置，能够显示文本的指定列/字符。<br>显示文件 <em>aaa.txt</em> 的第二列，以空格为分隔符：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -f2 -d<span class="string">' '</span> aaa.txt</span><br></pre></td></tr></table></figure>
-<p>参数的用法：<em>-f-4</em>表示显示1到4列；<br>如果显示指定字符：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -c2 aaa.txt</span><br></pre></td></tr></table></figure>
-<p>表示显示每行的第二个字符，<em>-c</em>参数的运用和<em>-f</em>一样。</p>
-</li>
-<li><p><strong>wildcard:</strong> makefile中的命令，用于获取当前目录下所有文件的文件路径（包括文件名）。用法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOURCES = $(wildcard *.c)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>notdir:</strong> makefile中的命令。用于删除路径，保留文件名。（也就是把最后一个/之前的内容删除）。用法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILES =$(notdir $(SOURCES))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>patsubst:</strong> makefile中的命令。用于替换操作。例如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OBJS = $(patsubst %.c，%.o，$(SOURCES))</span><br></pre></td></tr></table></figure>
-<p>表示将<em>SOURCES</em>中所有文件名的 <em>.c</em> 换成 <em>.o</em>。还有另一种写法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OBJS = $($(SOURCES): %.c = %.o)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>g++ -MP:</strong> <em>g++</em> 的编译选项 <em>-MP</em>。以下是 <em>g++</em> 文档的说明：This option instructs CPP to add a phony target for each dependency other than the main file, causing each to depend on nothing.  These dummy rules work around errors make gives if you remove header files without updating the Makefile to match. This is typical output:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">test.o: test.c test.h    </span></span><br><span class="line"><span class="section">test.h:</span></span><br></pre></td></tr></table></figure>
-<p>这就是为了当删除了头文件 <em>test.h</em> 能够触发 <em>test.o</em> 重新编译。</p>
-</li>
-<li><p><strong>g++ -MMD:</strong> <em>g++</em> 的编译选项。 首先是 <em>-MM</em>, 它会在编译阶段打印出编译对象的依赖（除了系统文件）；<em>-MMD</em>, 将产生的依赖关系写入 *<em>.d</em> 文件。通过 <em>g++</em> 的这种机制，能够自动发现文件之间的依赖关系，某个编译对象依赖的文件发生变化时，触发重新编译。</p>
-</li>
-<li><p>在makefile中，如果存在两个相同的目标，会将其合并，并选择较新的命令执行。</p>
-</li>
-<li><p>在make执行过程中，如果include的文件发生变化，会让make重新读取整个makefile。这也是make能够根据 <em>g++</em> 生成的依赖自动编译的原因。</p>
-</li>
+        <hr>
+<h3 id="何为Libra"><a href="#何为Libra" class="headerlink" title="何为Libra"></a>何为Libra</h3><p>Facebook在Libra白皮书中明确提到：Libra的使命是建立一套简单的、无国界的货币和为数十亿人服务的金融基础设施。这样的定位不可谓不宏大。<br>互联网的发展提高了信息传输的效率，降低了信息交互的成本。Facebook希望通过区块链技术，实现全球各个国家之间低成本高效率的交易支付，进一步提供普惠金融服务。</p>
+<h3 id="为什么做加密货币"><a href="#为什么做加密货币" class="headerlink" title="为什么做加密货币"></a>为什么做加密货币</h3><p>Facebook从2016年开始研究区块链，组建区块链团队，收购区块链初创公司，招聘区块链人才等动作不断。区块链技术今年来逐渐引起互联网科技公司的重视，但像Facebook这样大公司如此大动作的并不多。Facebook为何如此投入去研究区块链及加密货币，可能存在以下几点原因：</p>
+<ol>
+<li>Facebook的主要盈利模式是通过广告收入，需要寻求新的增长点。近年来Facebook不断爆出用户隐私泄露丑闻，同时自欧洲颁布GDPR以来，各个国家对用户隐私保护程度不断提高，Facebook以往通过分析用户数据，精准投放广告的模式必然会受到影响，所以Facebook需要业务转型，发现新的盈利模式。</li>
+<li>Facebook全球范围拥有27亿用户，覆盖大部分国家，而交易支付是一个拥有很大盈利空间的业务场景。基于Facebook广泛的用户群体，如果能实现用户之间的交易支付，将给Facebook带来巨大的营收。</li>
+</ol>
+<h3 id="Libra项目"><a href="#Libra项目" class="headerlink" title="Libra项目"></a>Libra项目</h3><p>区块链技术具有去中心化、不可篡改、可追溯等特点，且比特币等加密货币让人们看到了基于区块链技术的加密货币的可能性。Facebook在借鉴现有加密货币的基础上，从头设计并实现全新的区块链系统。在系统中，针对加密货币安全设计了新的智能合约语言“Move”，该语言与C++的move语义有相似之处。在语言层面，控制资产只能有唯一的拥有者，每份资产只能够花费一次，并且会对交易的逻辑进行检验。<br>Libra的定位是稳定币，与比特币等加密货币有本质不同。每一份Libra币都有真实的资产作为其储备，每生成一个Libra币就会有对应价值的资产进入储备池，如果资产被从储备池中提取出来，对应的Libra币也被销毁。市场上也有一些稳定币，如JMP Coin，USDT等，但是Libra的不同点在于其并不与某种特定的资产或法币挂钩，而是对应一篮子法币和波动性较小的短期债券，以此能保证Libra不会因为单一资产的价值波动而产生震荡。<br>Facebook还牵头联合多家不同行业背景的公司和机构（最初28家）成立了Libra协会，注册在瑞士，负责Libra的日常运营和储备资产管理，同时成为协会会员的机构能够获取储备资产的利息分红。<br>LIbra的愿景是实现一条公有链，凡是具备一定技术条件的节点都可以接入区块链系统中。但是当前阶段，公链在性能、安全性等方面还有很多待解决的问题，难以支撑数十亿用户大规模的交易，同时保证效率和安全。所以Libra最初将会以联盟链的形式启动，计划在5年内过渡到公链。</p>
+<h3 id="Calibra"><a href="#Calibra" class="headerlink" title="Calibra"></a>Calibra</h3><p>虽然Libra是Facebook发起，但是Facebook并不打算作为整个链的核心机构，如果那样将会是一个中心化系统，而且由于Facebook过往在用户隐私保护方面的不良记录，导致用户对其不信任。所以Facebook成立一个子公司Calibra，负责在libra上开展业务。从Calibra的官网信息来看，非常像一个支付宝的基础功能。</p>
+<hr>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://libra.org" target="_blank" rel="noopener">libra官网\白皮书\技术文档\测试网络</a></li>
+<li><a href="https://calibra.com/" target="_blank" rel="noopener">Calibra</a></li>
+<li><a href="https://github.com/libra" target="_blank" rel="noopener">gighub</a></li>
 </ul>
-<h3 id="一些特殊变量"><a href="#一些特殊变量" class="headerlink" title="一些特殊变量"></a>一些特殊变量</h3><p><strong>$^</strong><br>所有的依赖目标的集合。以空格分隔。如果在依赖目标中有多个重复的，那个这个变量<br>会去除重复的依赖目标，只保留一份。</p>
-<p><strong>$@</strong><br>表示规则中的目标文件集。在模式规则中，如果有多个目标，那么，”$@”就是匹配于<br>目标中模式定义的集合</p>
-<p><strong>$?</strong><br>所有比目标新的依赖目标的集合。以空格分隔。 </p>
-<p><strong>$&lt;</strong><br>依赖目标中的第一个目标名字。如果依赖目标是以模式（即”%”）定义的，那么”$&lt;”将<br>是符合模式的一系列的文件集。注意，其是一个一个取出来的。</p>
-<h3 id="make中的赋值"><a href="#make中的赋值" class="headerlink" title="make中的赋值"></a>make中的赋值</h3><ul>
-<li>?= 变量如果没有被赋值过，就赋予右边的值</li>
-<li>:= 覆盖之前的值</li>
-<li>= 最基本的赋值</li>
-<li>+= 添加等号后面的值</li>
-<li>=和:=的区别：=是将makefile最终展开后才确定值，:=是立即能确定值</li>
-</ul>
-<h3 id="很好的解释了自动生成依赖的文章"><a href="#很好的解释了自动生成依赖的文章" class="headerlink" title="很好的解释了自动生成依赖的文章"></a>很好的解释了自动生成依赖的文章</h3><p><a href="http://docs.linuxtone.org/ebooks/C&amp;CPP/c/ch22s04.html" target="_blank" rel="noopener">http://docs.linuxtone.org/ebooks/C&amp;CPP/c/ch22s04.html</a></p>
-<h3 id="一个makefile的例子"><a href="#一个makefile的例子" class="headerlink" title="一个makefile的例子"></a>一个makefile的例子</h3><p>本例是别人放在github上的一个项目，通过解释makefile文件了解其工作原理。<br>假设我们有如下工作目录：<br>+– inclue<br>|   +– qvector.h<br>+– src<br>|   +– main.cpp<br>|   +– qvector.cpp<br>+– makefile</p>
-<p>其中makefile是这样写的：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################################################</span></span><br><span class="line"><span class="comment"># 这部分都是定义一些变量，便于后续的操作</span></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line">CXX ?= g++         </span><br><span class="line">SRC_PATH = src      </span><br><span class="line">BUILD_PATH = build       </span><br><span class="line">BIN_PATH = <span class="variable">$(BUILD_PATH)</span>/bin     </span><br><span class="line">BIN_NAME = runner  </span><br><span class="line">SRC_EXT = cpp       </span><br><span class="line"></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line"><span class="comment"># 进行一些路径准备</span></span><br><span class="line"><span class="comment"># SOURCEs保存了当前目录下所有以 cpp 结尾的文件的路径</span></span><br><span class="line"><span class="comment"># OBJECTS通过模式匹配生成了每个源文件对应的目标文件路径</span></span><br><span class="line"><span class="comment"># DEPS是依赖文件的路径</span></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line">SOURCES = <span class="variable">$(<span class="built_in">shell</span> find <span class="variable">$(SRC_PATH)</span> -name '*.<span class="variable">$(SRC_EXT)</span>' | <span class="built_in">sort</span> -k 1nr | cut -f2-)</span> </span><br><span class="line">OBJECTS = $(SOURCES:<span class="variable">$(SRC_PATH)</span>/%.<span class="variable">$(SRC_EXT)</span>=<span class="variable">$(BUILD_PATH)</span>/%.o)   </span><br><span class="line">DEPS = $(OBJECTS:.o=.d)      </span><br><span class="line"></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line"><span class="comment"># 编译选项的配置</span></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line">COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g  <span class="comment"># -Wall-&gt; display warning, -Wextra-&gt;display other warning</span></span><br><span class="line">INCLUDES = -I <span class="keyword">include</span>/ -I /usr/local/<span class="keyword">include</span>        </span><br><span class="line">LIBS =         </span><br><span class="line"></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line"><span class="comment"># 定义了几个伪目标</span></span><br><span class="line"><span class="comment"># 这里的伪命令是层层递归调用的：</span></span><br><span class="line"><span class="comment"># default_target -&gt; release -&gt; dirs -&gt; dirs -&gt; all -&gt;  $(BIN_PATH)/$(BIN_NAME)</span></span><br><span class="line"><span class="comment"># -&gt; (BUILD_PATH)/%.o</span></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line"><span class="comment"># 在makefile中，如果make没有指定目标，第一个出现的目标就是终极目标，所以这里是default_target。</span></span><br><span class="line"><span class="comment"># default_target依赖于release，然后去检测release</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: default_target      </span></span><br><span class="line"><span class="section">default_target: release  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># release依赖于dirs，当依赖执行完成后，会执行它的命令 make all</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: release</span></span><br><span class="line"><span class="section">release: export CXXFLAGS := <span class="variable">$(CXXFLAGS)</span> <span class="variable">$(COMPILE_FLAGS)</span></span></span><br><span class="line"><span class="section">release: dirs               </span></span><br><span class="line">	@<span class="variable">$(MAKE)</span> all        </span><br><span class="line"></span><br><span class="line"><span class="comment"># dirs用于创建两个目录</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: dirs</span></span><br><span class="line"><span class="section">dirs:                                 </span></span><br><span class="line">	@echo <span class="string">"Creating directories"</span></span><br><span class="line">	@mkdir -p <span class="variable">$(<span class="built_in">dir</span> <span class="variable">$(OBJECTS)</span>)</span></span><br><span class="line">	@mkdir -p <span class="variable">$(BIN_PATH)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用于清理文件的伪命令</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	@echo <span class="string">"Deleting <span class="variable">$(BIN_NAME)</span> symlink"</span></span><br><span class="line">	@<span class="variable">$(RM)</span> <span class="variable">$(BIN_NAME)</span></span><br><span class="line">	@echo <span class="string">"Deleting directories"</span></span><br><span class="line">	@<span class="variable">$(RM)</span> -r <span class="variable">$(BUILD_PATH)</span></span><br><span class="line">	@<span class="variable">$(RM)</span> -r <span class="variable">$(BIN_PATH)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># all目标依赖于$(BIN_PATH)/$(BIN_NAME)，当依赖解决后，执行命令，产生一个软链接</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: all                                             </span></span><br><span class="line"><span class="section">all: <span class="variable">$(BIN_PATH)</span>/<span class="variable">$(BIN_NAME)</span>        </span></span><br><span class="line">	@echo <span class="string">"Making symlink: <span class="variable">$(BIN_NAME)</span> -&gt; <span class="variable">$&lt;</span>"</span></span><br><span class="line">	@<span class="variable">$(RM)</span> <span class="variable">$(BIN_NAME)</span></span><br><span class="line">	@ln -s <span class="variable">$(BIN_PATH)</span>/<span class="variable">$(BIN_NAME)</span> <span class="variable">$(BIN_NAME)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># $(BIN_PATH)/$(BIN_NAME)依赖于$(OBJECTS)，当所有的对象都更新完成后，执行命令，链接生成</span></span><br><span class="line"><span class="comment"># 可执行文件。</span></span><br><span class="line"><span class="variable">$(BIN_PATH)</span>/<span class="variable">$(BIN_NAME)</span>: <span class="variable">$(OBJECTS)</span>    </span><br><span class="line">	@echo <span class="string">"Linking: <span class="variable">$@</span>"</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(OBJECTS)</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载依赖文件，第一次不存在。</span></span><br><span class="line"><span class="keyword">-include</span> <span class="variable">$(DEPS)</span>            </span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个目标对象对应一个源文件，且会生成对应的依赖文件，这里的规则会和include的规则进行合并</span></span><br><span class="line"><span class="variable">$(BUILD_PATH)</span>/%.o: <span class="variable">$(SRC_PATH)</span>/%.<span class="variable">$(SRC_EXT)</span>         </span><br><span class="line">	@echo <span class="string">"Compiling: <span class="variable">$&lt;</span> -&gt; <span class="variable">$@</span>"</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> <span class="variable">$(INCLUDES)</span> -MP -MMD -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br></pre></td></tr></table></figure>
-<h3 id="自己的通用模板"><a href="#自己的通用模板" class="headerlink" title="自己的通用模板"></a>自己的通用模板</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">EXE_NAME:=main</span><br><span class="line">SRC_PATH:=.</span><br><span class="line">BUILD_PATH:=./build</span><br><span class="line">BIN_PATH:=<span class="variable">$(BUILD_PATH)</span>/bin</span><br><span class="line">EXE:=<span class="variable">$(BIN_PATH)</span>/<span class="variable">$(EXE_NAME)</span></span><br><span class="line"></span><br><span class="line">SOURCES:=<span class="variable">$(<span class="built_in">shell</span> find <span class="variable">$(SRC_PATH)</span> -name '*.cpp')</span></span><br><span class="line">OBJS:=<span class="variable">$(<span class="built_in">addprefix</span> <span class="variable">$(BUILD_PATH)</span>/,$(SOURCES:%.cpp=%.o)</span>)</span><br><span class="line">DEPS:=<span class="variable">$(<span class="built_in">addprefix</span> <span class="variable">$(BUILD_PATH)</span>/,$(SOURCES:%.cpp=%.d)</span>)</span><br><span class="line">OBJS_DIR:=<span class="variable">$(<span class="built_in">addprefix</span> <span class="variable">$(BUILD_PATH)</span>/,$(<span class="built_in">shell</span> dirname <span class="variable">$(SOURCES)</span> | <span class="built_in">sort</span> | uniq)</span>)</span><br><span class="line"></span><br><span class="line">LIBS:=</span><br><span class="line">CPPFLAGS+= -g -Wall -std=c++11 -I ./<span class="keyword">include</span></span><br><span class="line">CC:=g++</span><br><span class="line"></span><br><span class="line"><span class="section">all:<span class="variable">$(EXE)</span></span></span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> mkdir -p <span class="variable">$(OBJS_DIR)</span>)</span></span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> mkdir -p <span class="variable">$(BIN_PATH)</span>)</span></span><br><span class="line"><span class="keyword">-include</span> <span class="variable">$(DEPS)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(EXE)</span>: <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CPPFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(LIBS)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(OBJS)</span>: <span class="variable">$(BUILD_PATH)</span>/%.o: <span class="variable">$(SRC_PATH)</span>/%.cpp</span><br><span class="line">	<span class="variable">$(CC)</span> -o <span class="variable">$@</span> <span class="variable">$(CPPFLAGS)</span> -c <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(DEPS)</span>: <span class="variable">$(BUILD_PATH)</span>/%.d: <span class="variable">$(SRC_PATH)</span>/%.cpp</span><br><span class="line">	@set -e; rm -f <span class="variable">$@</span>; \</span><br><span class="line">	<span class="variable">$(CC)</span> -MM <span class="variable">$(CPPFLAGS)</span> <span class="variable">$&lt;</span> &gt; <span class="variable">$@</span>.$$$$; \</span><br><span class="line">	sed 's,.*\.o[ :]*,<span class="variable">$(<span class="built_in">patsubst</span> %.d,%.o,<span class="variable">$@</span>)</span> <span class="variable">$@</span> : ,g' &lt; <span class="variable">$@</span>.$$$$ &gt; <span class="variable">$@</span>; \</span><br><span class="line">	rm -f <span class="variable">$@</span>.$$$$</span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -rf ./build</span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: test</span></span><br><span class="line"><span class="section">test:</span></span><br><span class="line">	@echo <span class="variable">$(DEPS)</span></span><br><span class="line">	@echo <span class="variable">$(OBJS)</span></span><br><span class="line">	@echo <span class="variable">$(SOURCES)</span></span><br><span class="line">	@echo <span class="variable">$(SRC_PATH)</span></span><br><span class="line">	@echo <span class="variable">$(BUILD_PATH)</span></span><br><span class="line">	@echo <span class="variable">$(OBJS_DIR)</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -501,12 +444,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/makefile/" rel="tag"># makefile</a>
-          
-        </div>
-      
 
       
       
@@ -516,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Googletest入门文档翻译/" rel="next" title="Googletest入门文档翻译">
-                <i class="fa fa-chevron-left"></i> Googletest入门文档翻译
+              <a href="/Cpp的一些知识点/" rel="next" title="Cpp的一些知识点">
+                <i class="fa fa-chevron-left"></i> Cpp的一些知识点
               </a>
             
           </div>
@@ -525,10 +462,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/对称加密/" rel="prev" title="对称加密">
-                对称加密 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#make概述"><span class="nav-number">1.</span> <span class="nav-text">make概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">2.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些特殊变量"><span class="nav-number">3.</span> <span class="nav-text">一些特殊变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#make中的赋值"><span class="nav-number">4.</span> <span class="nav-text">make中的赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#很好的解释了自动生成依赖的文章"><span class="nav-number">5.</span> <span class="nav-text">很好的解释了自动生成依赖的文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个makefile的例子"><span class="nav-number">6.</span> <span class="nav-text">一个makefile的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己的通用模板"><span class="nav-number">7.</span> <span class="nav-text">自己的通用模板</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为Libra"><span class="nav-number">1.</span> <span class="nav-text">何为Libra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么做加密货币"><span class="nav-number">2.</span> <span class="nav-text">为什么做加密货币</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Libra项目"><span class="nav-number">3.</span> <span class="nav-text">Libra项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calibra"><span class="nav-number">4.</span> <span class="nav-text">Calibra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -848,9 +781,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.skybluues.com/makefile笔记/';
-          this.page.identifier = 'makefile笔记/';
-          this.page.title = 'makefile笔记';
+          this.page.url = 'http://www.skybluues.com/Libra分析/';
+          this.page.identifier = 'Libra分析/';
+          this.page.title = 'Libra分析';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://skyblues-notes.disqus.com/embed.js';
