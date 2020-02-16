@@ -318,7 +318,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C语言几个特殊的宏/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Linux动态库编译及使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -337,7 +337,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/C语言几个特殊的宏/" itemprop="url">C语言几个特殊的宏</a></h1>
+                <a class="post-title-link" href="/Linux动态库编译及使用/" itemprop="url">Linux动态库编译及使用</a></h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -368,8 +368,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/C语言几个特殊的宏/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C语言几个特殊的宏/" itemprop="commentCount"></span>
+                <a href="/Linux动态库编译及使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux动态库编译及使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,7 +377,7 @@
 
           
           
-             <span id="/C语言几个特殊的宏/" class="leancloud_visitors" data-flag-title="C语言几个特殊的宏">
+             <span id="/Linux动态库编译及使用/" class="leancloud_visitors" data-flag-title="Linux动态库编译及使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,16 +407,13 @@
       
         
           
-          C/C++几个预定义的调试宏
-FILE    记录文件的路径加名称
-FUNCTION    当前所在函数名
-LINE    记录文件已经被编译的行数
-DATE    记录文件的编译日期
-TIME   
+          生成动态库生成动态库的命令和和生成可执行文件大致相同，区别在于加两个编译选项：
+
+-fPIC 作用于编译阶段，告诉编译器生成位置无关代码；产生的代码中没有绝对地址，全部使用相对地址，所以代码可以被加载
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/C语言几个特殊的宏/#more" rel="contents">
+            <a class="btn" href="/Linux动态库编译及使用/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -462,7 +459,7 @@ TIME
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Docker部署JavaWeb项目/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/linux下统计代码行数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -481,7 +478,7 @@ TIME
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Docker部署JavaWeb项目/" itemprop="url">Docker部署JavaWeb项目</a></h1>
+                <a class="post-title-link" href="/linux下统计代码行数/" itemprop="url">linux下统计代码行数</a></h1>
         
 
         <div class="post-meta">
@@ -493,8 +490,8 @@ TIME
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -512,8 +509,8 @@ TIME
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Docker部署JavaWeb项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Docker部署JavaWeb项目/" itemprop="commentCount"></span>
+                <a href="/linux下统计代码行数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="linux下统计代码行数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -521,7 +518,7 @@ TIME
 
           
           
-             <span id="/Docker部署JavaWeb项目/" class="leancloud_visitors" data-flag-title="Docker部署JavaWeb项目">
+             <span id="/linux下统计代码行数/" class="leancloud_visitors" data-flag-title="linux下统计代码行数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -551,13 +548,12 @@ TIME
       
         
           
-          基于Spring Boot搭建的Web项目，用maven作为项目管理工具。通过docker容器部署，对外提供服务。
-
-生成war包在项目的pom.xml文件添加打包的配置：12345678&lt;pr
+          wc工具wc是Linux的一个统计工具，可以统计文件的行数、词数和字节数。
+1234567Usage: wc [OPTION]... [FILE]...    -c, --bytes, --chars
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Docker部署JavaWeb项目/#more" rel="contents">
+            <a class="btn" href="/linux下统计代码行数/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -603,7 +599,7 @@ TIME
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Linux安装Redis/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/一种接口定义方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -622,7 +618,7 @@ TIME
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Linux安装Redis/" itemprop="url">Linux安装Redis</a></h1>
+                <a class="post-title-link" href="/一种接口定义方法/" itemprop="url">一种接口定义方法</a></h1>
         
 
         <div class="post-meta">
@@ -634,8 +630,8 @@ TIME
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -653,8 +649,8 @@ TIME
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Linux安装Redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux安装Redis/" itemprop="commentCount"></span>
+                <a href="/一种接口定义方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="一种接口定义方法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -662,7 +658,7 @@ TIME
 
           
           
-             <span id="/Linux安装Redis/" class="leancloud_visitors" data-flag-title="Linux安装Redis">
+             <span id="/一种接口定义方法/" class="leancloud_visitors" data-flag-title="一种接口定义方法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -692,15 +688,12 @@ TIME
       
         
           
-          为第一次在linux下安装redis做个记录，并说明简单的配置。
-
-安装步骤
-下载安装包，以redis4.0.10为例。
-1wget http://download.redis.io/release/
+          前段时间开发项目用到了librdkafka库，学习了其中的部分源码。感觉代码中的接口设计方式挺好的，简单做个笔记，加深印象，以后可以模仿使用。
+接口部分：12345678class A &#123;p
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Linux安装Redis/#more" rel="contents">
+            <a class="btn" href="/一种接口定义方法/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -746,7 +739,7 @@ TIME
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/git笔记/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/leveldb_cmakelist注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -765,7 +758,7 @@ TIME
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/git笔记/" itemprop="url">git笔记</a></h1>
+                <a class="post-title-link" href="/leveldb_cmakelist注解/" itemprop="url">leveldb cmakelist注解</a></h1>
         
 
         <div class="post-meta">
@@ -777,8 +770,8 @@ TIME
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -796,8 +789,8 @@ TIME
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/git笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="git笔记/" itemprop="commentCount"></span>
+                <a href="/leveldb_cmakelist注解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="leveldb_cmakelist注解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -805,7 +798,7 @@ TIME
 
           
           
-             <span id="/git笔记/" class="leancloud_visitors" data-flag-title="git笔记">
+             <span id="/leveldb_cmakelist注解/" class="leancloud_visitors" data-flag-title="leveldb cmakelist注解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -835,13 +828,12 @@ TIME
       
         
           
-          基于Spring Boot搭建的Web项目，用maven作为项目管理工具。通过docker容器部署，对外提供服务。
-
-本文作为初学者学习git的笔记，文中通过一个简单的例子说明如何通过git管理一个项
+          最近学习使用CMake，看了一些文章感觉还是不会，索性就拿一个开源代码的CMakeList.txt来看，直接学习其写法。
+CMakeList.txt示例以下是leveldb的CMakeList.txt
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/git笔记/#more" rel="contents">
+            <a class="btn" href="/leveldb_cmakelist注解/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -887,7 +879,7 @@ TIME
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/lintcode部分解题/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/SwitchCase的另一种选择/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -906,7 +898,7 @@ TIME
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/lintcode部分解题/" itemprop="url">leetcode部分解题思路</a></h1>
+                <a class="post-title-link" href="/SwitchCase的另一种选择/" itemprop="url">SwitchCase的另一种选择</a></h1>
         
 
         <div class="post-meta">
@@ -918,8 +910,8 @@ TIME
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T21:54:47+08:00">
+                2019-11-24
               </time>
             
 
@@ -937,8 +929,8 @@ TIME
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/lintcode部分解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="lintcode部分解题/" itemprop="commentCount"></span>
+                <a href="/SwitchCase的另一种选择/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="SwitchCase的另一种选择/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -946,7 +938,7 @@ TIME
 
           
           
-             <span id="/lintcode部分解题/" class="leancloud_visitors" data-flag-title="leetcode部分解题思路">
+             <span id="/SwitchCase的另一种选择/" class="leancloud_visitors" data-flag-title="SwitchCase的另一种选择">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -976,12 +968,13 @@ TIME
       
         
           
-          1. A+B problem
-Write a function that add two numbers A and B. You should not use + or any arithmetic
+          开发过程中，经常会遇到这样一种情况：我们会收到带有枚举属性的数据，然后根据不同的枚举值进行不同的处理。
+SwitchCase这种情况，可用switch case语句处理，大概会是这样：
+1234567
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/lintcode部分解题/#more" rel="contents">
+            <a class="btn" href="/SwitchCase的另一种选择/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1022,7 +1015,7 @@ Write a function that add two numbers A and B. You should not use + or any arith
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1066,7 +1059,7 @@ Write a function that add two numbers A and B. You should not use + or any arith
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1144,7 +1137,7 @@ Write a function that add two numbers A and B. You should not use + or any arith
         <div class="copyright">
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

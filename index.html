@@ -318,7 +318,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++不定参数函数/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++自定义命令行参数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -337,7 +337,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/C++不定参数函数/" itemprop="url">C++不定参数函数</a></h1>
+                <a class="post-title-link" href="/C++自定义命令行参数/" itemprop="url">C++自定义命令行参数</a></h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T21:54:47+08:00">
-                2019-11-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -368,8 +368,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/C++不定参数函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++不定参数函数/" itemprop="commentCount"></span>
+                <a href="/C++自定义命令行参数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++自定义命令行参数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,7 +377,7 @@
 
           
           
-             <span id="/C++不定参数函数/" class="leancloud_visitors" data-flag-title="C++不定参数函数">
+             <span id="/C++自定义命令行参数/" class="leancloud_visitors" data-flag-title="C++自定义命令行参数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,12 +407,11 @@
       
         
           
-          用到的ApiC语言里面提供了三个宏用于实现不定参数函数：123va_start(ap,v)va_arg(ap,t)va_end(ap)
-具体的Api意义和用法可查看官方文档，这里写一段示例代码。这样的
+          经常在Linux环境下开发，通常都是通过命令行和系统交互。Linux提供了很多命令行工具，大部分工具都有很多选项，比如常用的ls，查看help就会看到很多选项。那这些选项是如何实现的？其实我们自己开发
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/C++不定参数函数/#more" rel="contents">
+            <a class="btn" href="/C++自定义命令行参数/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -458,7 +457,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++单例模式/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++Json库对比/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -477,7 +476,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/C++单例模式/" itemprop="url">C++单例模式</a></h1>
+                <a class="post-title-link" href="/C++Json库对比/" itemprop="url">C++ Json库对比</a></h1>
         
 
         <div class="post-meta">
@@ -489,8 +488,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T21:54:47+08:00">
-                2019-11-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -508,8 +507,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/C++单例模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++单例模式/" itemprop="commentCount"></span>
+                <a href="/C++Json库对比/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++Json库对比/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -517,7 +516,7 @@
 
           
           
-             <span id="/C++单例模式/" class="leancloud_visitors" data-flag-title="C++单例模式">
+             <span id="/C++Json库对比/" class="leancloud_visitors" data-flag-title="C++ Json库对比">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -547,13 +546,11 @@
       
         
           
-          在开发过程中，经常会用到单例，简单梳理一下几种单例的写法。
-写法One最开始，我写单例大概是这样的：
-123456789101112class SingletonA &#123;public:	sta
+          最近在开发一个程序时遇到性能瓶颈，经过排查后发现整个程序耗时最多的一段处理逻辑是对Json对象的序列化。我在代码中使用了Jsoncpp库，通过网上资料看了关于Jsoncpp的介绍，其特点是接口设计得比
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/C++单例模式/#more" rel="contents">
+            <a class="btn" href="/C++Json库对比/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -599,7 +596,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/SwitchCase的另一种选择/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++自定义类型的转换函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -618,7 +615,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/SwitchCase的另一种选择/" itemprop="url">SwitchCase的另一种选择</a></h1>
+                <a class="post-title-link" href="/C++自定义类型的转换函数/" itemprop="url">C++自定义类型的转换函数</a></h1>
         
 
         <div class="post-meta">
@@ -630,8 +627,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T21:54:47+08:00">
-                2019-11-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -649,8 +646,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/SwitchCase的另一种选择/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="SwitchCase的另一种选择/" itemprop="commentCount"></span>
+                <a href="/C++自定义类型的转换函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++自定义类型的转换函数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -658,7 +655,7 @@
 
           
           
-             <span id="/SwitchCase的另一种选择/" class="leancloud_visitors" data-flag-title="SwitchCase的另一种选择">
+             <span id="/C++自定义类型的转换函数/" class="leancloud_visitors" data-flag-title="C++自定义类型的转换函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -688,13 +685,12 @@
       
         
           
-          开发过程中，经常会遇到这样一种情况：我们会收到带有枚举属性的数据，然后根据不同的枚举值进行不同的处理。
-SwitchCase这种情况，可用switch case语句处理，大概会是这样：
-1234567
+          operator关键字C++中的关键字operator有两种用法，其中用于运算符重载应该是最为大家所熟知的，另一种用法就是用作类的转换函数，这篇文件就记录一下第二种用法。
+通常我们在编程的时候会做一些
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/SwitchCase的另一种选择/#more" rel="contents">
+            <a class="btn" href="/C++自定义类型的转换函数/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -740,7 +736,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Libra分析/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C-C++常用函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -759,7 +755,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Libra分析/" itemprop="url">Libra分析</a></h1>
+                <a class="post-title-link" href="/C-C++常用函数/" itemprop="url">C-C++常用函数</a></h1>
         
 
         <div class="post-meta">
@@ -771,8 +767,8 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-14T21:54:47+08:00">
-                2019-07-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -790,8 +786,8 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Libra分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Libra分析/" itemprop="commentCount"></span>
+                <a href="/C-C++常用函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C-C++常用函数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -799,7 +795,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
 
           
           
-             <span id="/Libra分析/" class="leancloud_visitors" data-flag-title="Libra分析">
+             <span id="/C-C++常用函数/" class="leancloud_visitors" data-flag-title="C-C++常用函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -829,12 +825,12 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
       
         
           
-          
-何为LibraFacebook在Libra白皮书中明确提到：Libra的使命是建立一套简单的、无国界的货币和为数十亿人服务的金融基础设施。这样的定位不可谓不宏大。互联网的发展提高了信息传输的效率，降
+          比较两个字符串12#include &lt;cstring&gt;extern int strcmp(const char *s1,const char *s2);
+strcmp函数是string c
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Libra分析/#more" rel="contents">
+            <a class="btn" href="/C-C++常用函数/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -880,7 +876,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Cpp的一些知识点/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Linux共享库的输出符号表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -899,7 +895,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Cpp的一些知识点/" itemprop="url">Cpp的一些知识点</a></h1>
+                <a class="post-title-link" href="/Linux共享库的输出符号表/" itemprop="url">Linux共享库的输出符号表</a></h1>
         
 
         <div class="post-meta">
@@ -911,8 +907,8 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-16T21:54:47+08:00">
+                2020-02-16
               </time>
             
 
@@ -930,8 +926,8 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Cpp的一些知识点/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp的一些知识点/" itemprop="commentCount"></span>
+                <a href="/Linux共享库的输出符号表/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux共享库的输出符号表/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -939,7 +935,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
 
           
           
-             <span id="/Cpp的一些知识点/" class="leancloud_visitors" data-flag-title="Cpp的一些知识点">
+             <span id="/Linux共享库的输出符号表/" class="leancloud_visitors" data-flag-title="Linux共享库的输出符号表">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -969,12 +965,12 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
       
         
           
-          C++模板的偏特化与全特化引用：http://harttle.com/2015/10/03/cpp-template.html
-特化就是把原始模板中的部分（偏特化）或全部（全特化）模板参数固定下来，定
+          我们在看很多第三方库的源码时，会发现这些库的实现代码，都会在对外暴露的接口前面加上一个宏，类似这种形式：123Q_EXPORT class A &#123;  ...  &#125;;
+这就是在指定c
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Cpp的一些知识点/#more" rel="contents">
+            <a class="btn" href="/Linux共享库的输出符号表/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1015,7 +1011,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1059,7 +1055,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1137,7 +1133,7 @@ SwitchCase这种情况，可用switch case语句处理，大概会是这样：
         <div class="copyright">
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -318,7 +318,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/web3j学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++不定参数函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -337,7 +337,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/web3j学习笔记/" itemprop="url">web3j学习笔记</a></h1>
+                <a class="post-title-link" href="/C++不定参数函数/" itemprop="url">C++不定参数函数</a></h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T21:54:47+08:00">
+                2019-11-24
               </time>
             
 
@@ -368,8 +368,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/web3j学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="web3j学习笔记/" itemprop="commentCount"></span>
+                <a href="/C++不定参数函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++不定参数函数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,7 +377,7 @@
 
           
           
-             <span id="/web3j学习笔记/" class="leancloud_visitors" data-flag-title="web3j学习笔记">
+             <span id="/C++不定参数函数/" class="leancloud_visitors" data-flag-title="C++不定参数函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,11 +407,12 @@
       
         
           
-          Overviewweb3j是以太坊的jsonrpc的一个java封装，实现java程序与以太坊的交互。这篇笔记并不单纯的讲web3j，甚至涉及的内容只是比较基础的一部分。主要的内容是如何用java写一
+          用到的ApiC语言里面提供了三个宏用于实现不定参数函数：123va_start(ap,v)va_arg(ap,t)va_end(ap)
+具体的Api意义和用法可查看官方文档，这里写一段示例代码。这样的
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/web3j学习笔记/#more" rel="contents">
+            <a class="btn" href="/C++不定参数函数/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -457,7 +458,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/正则表达式/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/C++单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -476,7 +477,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/正则表达式/" itemprop="url">正则表达式</a></h1>
+                <a class="post-title-link" href="/C++单例模式/" itemprop="url">C++单例模式</a></h1>
         
 
         <div class="post-meta">
@@ -488,8 +489,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-24T21:54:47+08:00">
+                2019-11-24
               </time>
             
 
@@ -507,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/正则表达式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="正则表达式/" itemprop="commentCount"></span>
+                <a href="/C++单例模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="C++单例模式/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -516,7 +517,7 @@
 
           
           
-             <span id="/正则表达式/" class="leancloud_visitors" data-flag-title="正则表达式">
+             <span id="/C++单例模式/" class="leancloud_visitors" data-flag-title="C++单例模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -546,12 +547,13 @@
       
         
           
-          正则表达式在不同的工具和语言中会有差异，这里限定在POSIX标准的正则。
-grepLinux上的一个工具，名字来自于 “global regular expression print”，它能在输入文件
+          在开发过程中，经常会用到单例，简单梳理一下几种单例的写法。
+写法One最开始，我写单例大概是这样的：
+123456789101112class SingletonA &#123;public:	sta
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/正则表达式/#more" rel="contents">
+            <a class="btn" href="/C++单例模式/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -597,7 +599,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/用idea构建一个spring项目/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Libra分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -616,7 +618,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/用idea构建一个spring项目/" itemprop="url">用idea构建一个spring项目</a></h1>
+                <a class="post-title-link" href="/Libra分析/" itemprop="url">Libra分析</a></h1>
         
 
         <div class="post-meta">
@@ -628,8 +630,8 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-14T21:54:47+08:00">
+                2019-07-14
               </time>
             
 
@@ -647,8 +649,8 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/用idea构建一个spring项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="用idea构建一个spring项目/" itemprop="commentCount"></span>
+                <a href="/Libra分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Libra分析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -656,7 +658,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
 
           
           
-             <span id="/用idea构建一个spring项目/" class="leancloud_visitors" data-flag-title="用idea构建一个spring项目">
+             <span id="/Libra分析/" class="leancloud_visitors" data-flag-title="Libra分析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -686,19 +688,12 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
       
         
           
-          安装tomcat
-到官网下载合适版本的tomcat到本地
-解压
-之前有配置过java环境变量，就不用再配置其他的了
-运行bin目录下的startup脚本，看是否正常显示
-
-创建项目
-打开idea
-创建
+          
+何为LibraFacebook在Libra白皮书中明确提到：Libra的使命是建立一套简单的、无国界的货币和为数十亿人服务的金融基础设施。这样的定位不可谓不宏大。互联网的发展提高了信息传输的效率，降
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/用idea构建一个spring项目/#more" rel="contents">
+            <a class="btn" href="/Libra分析/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -744,7 +739,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/node开发以太坊程序/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Cpp的一些知识点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -763,7 +758,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/node开发以太坊程序/" itemprop="url">node开发以太坊程序</a></h1>
+                <a class="post-title-link" href="/Cpp的一些知识点/" itemprop="url">Cpp的一些知识点</a></h1>
         
 
         <div class="post-meta">
@@ -794,8 +789,8 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/node开发以太坊程序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="node开发以太坊程序/" itemprop="commentCount"></span>
+                <a href="/Cpp的一些知识点/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp的一些知识点/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -803,7 +798,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
 
           
           
-             <span id="/node开发以太坊程序/" class="leancloud_visitors" data-flag-title="node开发以太坊程序">
+             <span id="/Cpp的一些知识点/" class="leancloud_visitors" data-flag-title="Cpp的一些知识点">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -833,12 +828,12 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
       
         
           
-          记录用node开发以太坊程序的一些关键点，通过web3js-1.0
-提示nodejs是写后端的，它提供的很多模块在前端js上不能运行（因为浏览器没有环境），可通过browserify在本地打包对应的模
+          C++模板的偏特化与全特化引用：http://harttle.com/2015/10/03/cpp-template.html
+特化就是把原始模板中的部分（偏特化）或全部（全特化）模板参数固定下来，定
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/node开发以太坊程序/#more" rel="contents">
+            <a class="btn" href="/Cpp的一些知识点/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -884,7 +879,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/solidity学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Docker部署JavaWeb项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -903,7 +898,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/solidity学习笔记/" itemprop="url">solidity学习笔记</a></h1>
+                <a class="post-title-link" href="/Docker部署JavaWeb项目/" itemprop="url">Docker部署JavaWeb项目</a></h1>
         
 
         <div class="post-meta">
@@ -934,8 +929,8 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/solidity学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="solidity学习笔记/" itemprop="commentCount"></span>
+                <a href="/Docker部署JavaWeb项目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Docker部署JavaWeb项目/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -943,7 +938,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
 
           
           
-             <span id="/solidity学习笔记/" class="leancloud_visitors" data-flag-title="solidity学习笔记">
+             <span id="/Docker部署JavaWeb项目/" class="leancloud_visitors" data-flag-title="Docker部署JavaWeb项目">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -973,11 +968,13 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
       
         
           
-          overviewsolidity是为了以太坊智能合约而创造的语言，语言本身并不复杂，有其他编程语言基础的人应该很容易上手，但是由于其特殊的运行环境，它也有一些独有的特性。先看一段智能合约代码，这是来自
+          基于Spring Boot搭建的Web项目，用maven作为项目管理工具。通过docker容器部署，对外提供服务。
+
+生成war包在项目的pom.xml文件添加打包的配置：12345678&lt;pr
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/solidity学习笔记/#more" rel="contents">
+            <a class="btn" href="/Docker部署JavaWeb项目/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1018,7 +1015,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1062,7 +1059,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1140,7 +1137,7 @@ grepLinux上的一个工具，名字来自于 “global regular expression print
         <div class="copyright">
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
