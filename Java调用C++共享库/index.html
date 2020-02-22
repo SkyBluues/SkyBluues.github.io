@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="Overviewweb3j是以太坊的jsonrpc的一个java封装，实现java程序与以太坊的交互。这篇笔记并不单纯的讲web3j，甚至涉及的内容只是比较基础的一部分。主要的内容是如何用java写一个基于以太坊的应用（helloworld程度），会涉及以太坊测试链、infura、solidity。 以太坊测试链以太坊是通过以太币进行交易的，每次触发合约几乎都会产生交易，也就是要消耗一定的以太币，">
+<meta name="description" content="在实际项目开发中，有时会遇到需要在Java中去调用C++实现的功能的场景。本文介绍一种实现方式。 总体思路Java调用C++有多种方式，其中之一是利用Java的jna包去调用C++的共享库。实现需要以下几步：  将C++暴露的接口编译为共享库，并将*.so文件置于系统能找到的地址 在Java项目中引入jna jar包，地址为https://mvnrepository.com/artifact/ne">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web3j学习笔记">
-<meta property="og:url" content="http://www.skybluues.com/web3j学习笔记/index.html">
+<meta property="og:title" content="Java调用C++共享库">
+<meta property="og:url" content="http://www.skybluues.com/Java调用C++共享库/index.html">
 <meta property="og:site_name" content="SkyBlues Notes">
-<meta property="og:description" content="Overviewweb3j是以太坊的jsonrpc的一个java封装，实现java程序与以太坊的交互。这篇笔记并不单纯的讲web3j，甚至涉及的内容只是比较基础的一部分。主要的内容是如何用java写一个基于以太坊的应用（helloworld程度），会涉及以太坊测试链、infura、solidity。 以太坊测试链以太坊是通过以太币进行交易的，每次触发合约几乎都会产生交易，也就是要消耗一定的以太币，">
+<meta property="og:description" content="在实际项目开发中，有时会遇到需要在Java中去调用C++实现的功能的场景。本文介绍一种实现方式。 总体思路Java调用C++有多种方式，其中之一是利用Java的jna包去调用C++的共享库。实现需要以下几步：  将C++暴露的接口编译为共享库，并将*.so文件置于系统能找到的地址 在Java项目中引入jna jar包，地址为https://mvnrepository.com/artifact/ne">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-06-23T09:13:25.230Z">
+<meta property="og:updated_time" content="2020-02-22T01:27:14.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="web3j学习笔记">
-<meta name="twitter:description" content="Overviewweb3j是以太坊的jsonrpc的一个java封装，实现java程序与以太坊的交互。这篇笔记并不单纯的讲web3j，甚至涉及的内容只是比较基础的一部分。主要的内容是如何用java写一个基于以太坊的应用（helloworld程度），会涉及以太坊测试链、infura、solidity。 以太坊测试链以太坊是通过以太币进行交易的，每次触发合约几乎都会产生交易，也就是要消耗一定的以太币，">
+<meta name="twitter:title" content="Java调用C++共享库">
+<meta name="twitter:description" content="在实际项目开发中，有时会遇到需要在Java中去调用C++实现的功能的场景。本文介绍一种实现方式。 总体思路Java调用C++有多种方式，其中之一是利用Java的jna包去调用C++的共享库。实现需要以下几步：  将C++暴露的接口编译为共享库，并将*.so文件置于系统能找到的地址 在Java项目中引入jna jar包，地址为https://mvnrepository.com/artifact/ne">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://www.skybluues.com/web3j学习笔记/">
+  <link rel="canonical" href="http://www.skybluues.com/Java调用C++共享库/">
 
 
 
 
 
-  <title>web3j学习笔记 | SkyBlues Notes</title>
+  <title>Java调用C++共享库 | SkyBlues Notes</title>
   
 
 
@@ -317,7 +317,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/web3j学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://www.skybluues.com/Java调用C++共享库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SkyBlues">
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">web3j学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Java调用C++共享库</h1>
         
 
         <div class="post-meta">
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T21:54:47+08:00">
-                2019-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-22T21:54:47+08:00">
+                2020-02-22
               </time>
             
 
@@ -365,8 +365,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/web3j学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="web3j学习笔记/" itemprop="commentCount"></span>
+                <a href="/Java调用C++共享库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Java调用C++共享库/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,7 +374,7 @@
 
           
           
-             <span id="/web3j学习笔记/" class="leancloud_visitors" data-flag-title="web3j学习笔记">
+             <span id="/Java调用C++共享库/" class="leancloud_visitors" data-flag-title="Java调用C++共享库">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -402,15 +402,92 @@
       
 
       
-        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>web3j是以太坊的jsonrpc的一个java封装，实现java程序与以太坊的交互。<br>这篇笔记并不单纯的讲web3j，甚至涉及的内容只是比较基础的一部分。主要的内容是如何用java写一个基于以太坊的应用<br>（helloworld程度），会涉及以太坊测试链、infura、solidity。</p>
-<h2 id="以太坊测试链"><a href="#以太坊测试链" class="headerlink" title="以太坊测试链"></a>以太坊测试链</h2><p>以太坊是通过以太币进行交易的，每次触发合约几乎都会产生交易，也就是要消耗一定的以太币，这在应用开发阶段是不能<br>接受的，所以以太坊官方创造了一些测试链，测试链几乎和真正的链（称为主链）相同，只是在上面的交易不会真正花费<br>以太。目前以太坊测试链有三个：</p>
+        <p>在实际项目开发中，有时会遇到需要在Java中去调用C++实现的功能的场景。本文介绍一种实现方式。</p>
+<h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h3><p>Java调用C++有多种方式，其中之一是利用Java的jna包去调用C++的共享库。实现需要以下几步：</p>
 <ul>
-<li>Ropsten</li>
-<li>Kovan</li>
-<li>Rinkeby – 目前最常用的测试网络<br>这里也基于Rinkeby实现这个应用。</li>
+<li>将C++暴露的接口编译为共享库，并将*.so文件置于系统能找到的地址</li>
+<li>在Java项目中引入jna jar包，地址为<a href="https://mvnrepository.com/artifact/net.java.dev.jna/jna/" target="_blank" rel="noopener">https://mvnrepository.com/artifact/net.java.dev.jna/jna/</a></li>
+<li>在Java项目中load共享库，并定义和C++相同的接口。</li>
 </ul>
-<h2 id="infura"><a href="#infura" class="headerlink" title="infura"></a>infura</h2><p>一个完整的以太坊节点要保存所有的账本数据，通常有几十G，第一次同步的时候会花费很长时间。如果仅仅做一些测试和<br>验证，可以用infura提供的节点，不必在本地同步所有数据。之后会详细说明infura的应用。</p>
-<h2 id="以太坊钱包"><a href="#以太坊钱包" class="headerlink" title="以太坊钱包"></a>以太坊钱包</h2><p>以太坊钱包有很多，官方提供的实现有geth\aleth，都是命令行界面的，完整实现了以太坊的功能。也有一些图形界面的实现，<br>如：MyEtherWallet、Parity、Mist等，这里选用Mist，他的后端使用的是geth。</p>
+<h3 id="一个示例"><a href="#一个示例" class="headerlink" title="一个示例"></a>一个示例</h3><p>以下通过一个简单的例子描述实现的过程。</p>
+<p>首先，用C++实现两个简单的函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">char</span>* str)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处，C++代码最好采用C的规则编译，用C++的规则会导致符号表发生一些变化，导致Java无法调用。当然，解决的办法也有，但是比较麻烦，还是不推荐使用。</p>
+<p>通过g++将刚才写的源代码编译为共享库 libjnatest.so：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -fPIC -shared -o libjnatest.so jnatest.cpp</span><br></pre></td></tr></table></figure>
+<p>至此，C++这一侧的工作就完成了，接下来是Java。</p>
+<p>在Java代码中要引入jna包，并且定义出和C++中暴露的接口一致的接口，关于数据类型的映射关系在后文中给出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.sun.jna.Library;</span><br><span class="line"><span class="keyword">import</span> com.sun.jna.Native;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">JnaTest</span> <span class="keyword">extends</span> <span class="title">Library</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String JNA_ImgProcess = <span class="string">"jnatest"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> JnaTest instance =</span><br><span class="line">            (JnaTest)Native.loadLibrary(JnaTest.JNA_ImgProcess,JnaTest.class);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(String str)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，在Java中使用以上的接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        JnaTest instance = JnaTest.instance;</span><br><span class="line">        <span class="keyword">int</span> result = instance.add(<span class="number">3</span>,<span class="number">6</span>);</span><br><span class="line">        instance.print(<span class="string">"abcd"</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行的时候需要将共享库jnatest.so置于系统的环境变量下，让系统能够搜索到这个库。</p>
+<h3 id="Java与C-的数据类型映射关系"><a href="#Java与C-的数据类型映射关系" class="headerlink" title="Java与C++的数据类型映射关系"></a>Java与C++的数据类型映射关系</h3><table>
+<thead>
+<tr>
+<th>Native Type</th>
+<th>Size</th>
+<th>Java Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>8-bit integer</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16-bit integer</td>
+<td>short</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>16/32-bit character</td>
+<td>char</td>
+</tr>
+<tr>
+<td>int</td>
+<td>32-bit integer</td>
+<td>int</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>boolean value</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>long</td>
+<td>32/64-bit integer</td>
+<td>NativeLong</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>64-bit integer</td>
+<td>long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>32-bit FP</td>
+<td>float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64-bit FP</td>
+<td>double</td>
+</tr>
+<tr>
+<td>char*</td>
+<td>C string</td>
+<td>String</td>
+</tr>
+<tr>
+<td>void*</td>
+<td>pointer</td>
+<td>Pointer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/bigben0123/articles/11084523.html" target="_blank" rel="noopener">https://www.cnblogs.com/bigben0123/articles/11084523.html</a></p>
 
       
     </div>
@@ -447,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/正则表达式/" rel="next" title="正则表达式">
-                <i class="fa fa-chevron-left"></i> 正则表达式
+              <a href="/C++Json库对比/" rel="next" title="C++ Json库对比">
+                <i class="fa fa-chevron-left"></i> C++ Json库对比
               </a>
             
           </div>
@@ -456,10 +533,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/lintcode部分解题/" rel="prev" title="leetcode部分解题思路">
-                leetcode部分解题思路 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -631,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊测试链"><span class="nav-number">2.</span> <span class="nav-text">以太坊测试链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#infura"><span class="nav-number">3.</span> <span class="nav-text">infura</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊钱包"><span class="nav-number">4.</span> <span class="nav-text">以太坊钱包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#总体思路"><span class="nav-number">1.</span> <span class="nav-text">总体思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个示例"><span class="nav-number">2.</span> <span class="nav-text">一个示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java与C-的数据类型映射关系"><span class="nav-number">3.</span> <span class="nav-text">Java与C++的数据类型映射关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -779,9 +852,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.skybluues.com/web3j学习笔记/';
-          this.page.identifier = 'web3j学习笔记/';
-          this.page.title = 'web3j学习笔记';
+          this.page.url = 'http://www.skybluues.com/Java调用C++共享库/';
+          this.page.identifier = 'Java调用C++共享库/';
+          this.page.title = 'Java调用C++共享库';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://skyblues-notes.disqus.com/embed.js';
